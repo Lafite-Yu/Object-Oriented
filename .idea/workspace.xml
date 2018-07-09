@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/Scheduler.java" line="145" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca5eae63-1aec-49e2-b11b-01000fb476a6" name="Default" comment="" />
+    <list default="true" id="a657bc7b-3be3-4c6b-abc2-1768c0f217e7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/IFTTT/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/IFTTT/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IFTTT/TestThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/IFTTT/TestThread.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path=".idea/" />
+    <ignored mask="*.iml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,16 +15,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ThreadElevator$Main.ic" NAME="Main Coverage Results" MODIFIED="1523374081352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ElevatorSys.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ElevatorSys.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/IFTTT/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+            <state relative-caret-position="6">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,23 +29,168 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Elevator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Elevator.java">
+      <file leaf-file-name="FileMonitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFTTT/FileMonitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+            <state relative-caret-position="567">
+              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestQueue.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RequestQueue.java">
+      <file leaf-file-name="TestThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFTTT/TestThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="2016">
+              <caret line="99" column="43" selection-start-line="99" selection-start-column="43" selection-end-line="99" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Trigger.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFTTT/Trigger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2100">
+              <caret line="101" column="17" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Workspace.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFTTT/Workspace.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DEFINE.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFTTT/DEFINE.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JAVA/" pinned="false" current-in-tab="false">
+        <entry file="uml://JAVA/">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>JAVA</ID>
+              <OriginalElement />
+              <nodes>
+                <node x="818.4007755265573" y="781.0">SnapShot</node>
+                <node x="1897.9827280792133" y="477.0">TestThread</node>
+                <node x="43.5" y="233.5">FileOperater</node>
+                <node x="450.5416595123629" y="0.0">DEFINE</node>
+                <node x="612.2430374313192" y="1911.0">Trigger</node>
+                <node x="576.9216088598905" y="896.5">Monitor</node>
+                <node x="495.9216088598905" y="1155.0">FileMonitor</node>
+                <node x="431.23214285714283" y="1523.0">DictMonitor</node>
+                <node x="1610.8636804601656" y="1557.5">TriggerInfo</node>
+                <node x="957.1890954097988" y="130.0">SafeFile</node>
+                <node x="370.82041838370014" y="546.0">Summary</node>
+                <node x="1047.1507755265573" y="2107.0">Main</node>
+                <node x="184.5" y="546.0">Detail</node>
+                <node x="1337.4007755265573" y="488.5">Workspace</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="DictMonitor" target="DEFINE">
+                  <point x="-57.69230769230762" y="-119.0" />
+                  <point x="498.5398351648352" y="1453.0" />
+                  <point x="355.0" y="1453.0" />
+                  <point x="355.0" y="90.0" />
+                  <point x="478.82737379807725" y="90.0" />
+                  <point x="-15.714285714285666" y="15.0" />
+                </edge>
+                <edge source="FileMonitor" target="DEFINE">
+                  <point x="35.75" y="-119.0" />
+                  <point x="674.6716088598905" y="1095.0" />
+                  <point x="739.4632755265573" y="1095.0" />
+                  <point x="739.4632755265573" y="80.0" />
+                  <point x="516.5416595123629" y="80.0" />
+                  <point x="22.0" y="15.0" />
+                </edge>
+                <edge source="SafeFile" target="DEFINE">
+                  <point x="-73.0" y="-118.5" />
+                  <point x="1030.189095409799" y="70.0" />
+                  <point x="522.8273737980772" y="70.0" />
+                  <point x="28.285714285714334" y="15.0" />
+                </edge>
+                <edge source="Trigger" target="DEFINE">
+                  <point x="-70.47619047619048" y="-38.0" />
+                  <point x="615.7668469551286" y="1881.0" />
+                  <point x="0.0" y="1881.0" />
+                  <point x="0.0" y="50.0" />
+                  <point x="453.68451665522" y="50.0" />
+                  <point x="-40.85714285714289" y="15.0" />
+                </edge>
+                <edge source="Summary" target="DEFINE">
+                  <point x="-35.0" y="-38.0" />
+                  <point x="405.82041838370014" y="457.0" />
+                  <point x="441.61103909111773" y="457.0" />
+                  <point x="441.61103909111773" y="100.0" />
+                  <point x="485.11308808379147" y="100.0" />
+                  <point x="-9.428571428571445" y="15.0" />
+                </edge>
+                <edge source="FileOperater" target="DEFINE">
+                  <point x="0.0" y="-15.0" />
+                  <point x="103.5" y="70.0" />
+                  <point x="466.2559452266486" y="70.0" />
+                  <point x="-28.285714285714334" y="15.0" />
+                </edge>
+                <edge source="Monitor" target="DEFINE">
+                  <point x="23.25" y="-26.5" />
+                  <point x="662.1716088598905" y="741.0" />
+                  <point x="701.5882755265573" y="741.0" />
+                  <point x="701.5882755265573" y="90.0" />
+                  <point x="510.2559452266486" y="90.0" />
+                  <point x="15.714285714285666" y="15.0" />
+                </edge>
+                <edge source="TriggerInfo" target="DEFINE">
+                  <point x="0.0" y="-84.5" />
+                  <point x="1726.3636804601656" y="1503.0" />
+                  <point x="2156.4827280792133" y="1503.0" />
+                  <point x="2156.4827280792133" y="50.0" />
+                  <point x="535.3988023695058" y="50.0" />
+                  <point x="40.85714285714289" y="15.0" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="0.22018348623853212" x="1078.5" y="1080.0" />
+              <SelectedNodes>
+                <node>SnapShot</node>
+              </SelectedNodes>
+              <Categories>
+                <Category>Methods</Category>
+                <Category>Properties</Category>
+              </Categories>
+              <SCOPE>All</SCOPE>
+              <VISIBILITY>private</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SnapShot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFTTT/SnapShot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#printFileStruct#0;class#SnapShot#0" />
+                <element signature="method#deepCopy#0;class#SnapShot#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Summary.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IFTTT/Summary.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="672">
+              <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -56,16 +200,27 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
-      <find>wa</find>
-      <find>wait</find>
+      <find>exist</find>
+      <find>Exist</find>
+      <find>File Not</find>
+      <find>Summary up</find>
+      <find>yu</find>
+      <find>父目录</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\NutStore\Code\OO\project6\Code\IFTTT</dir>
+      <dir>I:\Course Files\Nutstore\Code\OO\project6\Code\IFTTT</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,15 +229,22 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/InputHandler.java" />
-        <option value="$PROJECT_DIR$/src/Floor.java" />
-        <option value="$PROJECT_DIR$/src/RequestSimulator.java" />
-        <option value="$PROJECT_DIR$/src/ElevatorSys.java" />
-        <option value="$PROJECT_DIR$/src/Elevator.java" />
-        <option value="$PROJECT_DIR$/src/Request.java" />
-        <option value="$PROJECT_DIR$/src/RequestQueue.java" />
-        <option value="$PROJECT_DIR$/src/Tray.java" />
-        <option value="$PROJECT_DIR$/src/Scheduler.java" />
+        <option value="$PROJECT_DIR$/IFTTT/File.java" />
+        <option value="$PROJECT_DIR$/IFTTT/FileTrigger.java" />
+        <option value="$PROJECT_DIR$/IFTTT/TriggerInfo.java" />
+        <option value="$PROJECT_DIR$/IFTTT/DEFINE.java" />
+        <option value="$PROJECT_DIR$/IFTTT/Workspace.java" />
+        <option value="$PROJECT_DIR$/IFTTT/DictMonitor.java" />
+        <option value="$PROJECT_DIR$/IFTTT/FileMonitor.java" />
+        <option value="$PROJECT_DIR$/IFTTT/SnapShot.java" />
+        <option value="$PROJECT_DIR$/IFTTT/Detail.java" />
+        <option value="$PROJECT_DIR$/IFTTT/Summary.java" />
+        <option value="$PROJECT_DIR$/IFTTT/FileOperater.java" />
+        <option value="$PROJECT_DIR$/IFTTT/SafeFile.java" />
+        <option value="$PROJECT_DIR$/IFTTT/Monitor.java" />
+        <option value="$PROJECT_DIR$/IFTTT/Trigger.java" />
+        <option value="$PROJECT_DIR$/IFTTT/Main.java" />
+        <option value="$PROJECT_DIR$/IFTTT/TestThread.java" />
       </list>
     </option>
   </component>
@@ -92,8 +254,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-10" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="950" />
     <option name="width" value="980" />
     <option name="height" value="1090" />
   </component>
@@ -103,35 +265,34 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="ThreadElevator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2018_spring_16061189_5" type="462c0819:PsiDirectoryNode" />
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ThreadElevator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="2018_spring_16061189_5" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
+              <item name="IFTTT" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../project5/2018_spring_16061189_5" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -147,8 +308,8 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="ElevatorSys" />
-      <module name="Git" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="IFTTT" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -179,77 +340,123 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ca5eae63-1aec-49e2-b11b-01000fb476a6" name="Default" comment="" />
-      <created>1523262053579</created>
+      <changelist id="a657bc7b-3be3-4c6b-abc2-1768c0f217e7" name="Default" comment="" />
+      <created>1523928314098</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1523262053579</updated>
-      <workItem from="1523262055250" duration="12860000" />
-      <workItem from="1523322338943" duration="475000" />
-      <workItem from="1523324271118" duration="546000" />
-      <workItem from="1523325045028" duration="16000" />
-      <workItem from="1523328582137" duration="3707000" />
-      <workItem from="1523345819081" duration="109000" />
-      <workItem from="1523346240823" duration="3840000" />
-      <workItem from="1523367029154" duration="10817000" />
-      <workItem from="1523410254615" duration="14627000" />
-      <workItem from="1523431167086" duration="4104000" />
-      <workItem from="1523437303594" duration="541000" />
-      <workItem from="1523438291382" duration="156000" />
-      <workItem from="1523446624500" duration="1014000" />
-      <workItem from="1523524259233" duration="157000" />
-      <workItem from="1523619760761" duration="12000" />
-      <workItem from="1523929487559" duration="2227000" />
-      <workItem from="1523971565813" duration="50000" />
-      <workItem from="1525164763435" duration="1359000" />
-      <workItem from="1525181126235" duration="38000" />
-      <workItem from="1525582537468" duration="838000" />
-      <workItem from="1525660800543" duration="597000" />
-      <workItem from="1525693165530" duration="598000" />
-      <workItem from="1525749560334" duration="644000" />
-      <workItem from="1528643931484" duration="638000" />
+      <updated>1523928314098</updated>
+      <workItem from="1523928316916" duration="8069000" />
+      <workItem from="1523952260899" duration="13199000" />
+      <workItem from="1523971621550" duration="10618000" />
+      <workItem from="1524015202817" duration="24469000" />
+      <workItem from="1524043947210" duration="317000" />
+      <workItem from="1524044980612" duration="1412000" />
+      <workItem from="1524046604078" duration="177000" />
+      <workItem from="1524046867540" duration="133000" />
+      <workItem from="1524047111739" duration="20000" />
+      <workItem from="1524048264197" duration="308000" />
+      <workItem from="1524144892134" duration="5502000" />
+      <workItem from="1524190516515" duration="582000" />
+      <workItem from="1524191415186" duration="173000" />
+      <workItem from="1524191615310" duration="1405000" />
+      <workItem from="1524205222492" duration="28000" />
+      <workItem from="1524208407574" duration="695000" />
+      <workItem from="1524234015066" duration="1897000" />
+      <workItem from="1524292315627" duration="320000" />
+      <workItem from="1524461643279" duration="343000" />
+      <workItem from="1524462290302" duration="230000" />
+      <workItem from="1524473520581" duration="8000" />
+      <workItem from="1524482155563" duration="203000" />
+      <workItem from="1524482364587" duration="2000" />
+      <workItem from="1525166134789" duration="1039000" />
+      <workItem from="1525181082378" duration="42000" />
     </task>
+    <task id="LOCAL-00001" summary="IDEA Commit Test">
+      <created>1523928422274</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1523928422274</updated>
+    </task>
+    <task id="LOCAL-00002" summary="0.1">
+      <created>1523929372322</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1523929372322</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59970000" />
+    <option name="totallyTimeSpent" value="71191000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2062" height="1166" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5019557" side_tool="true" weight="0.44385734" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49804434" weight="0.4384817" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info id="Image Layers" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.32984293" />
+      <window_info anchor="right" id="Maven Projects" order="4" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.3117409" />
+      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32928476" />
       <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.06786427" />
+      <window_info id="Designer" order="0" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.13873994" />
+      <window_info active="true" anchor="bottom" id="Metrics" visible="true" weight="0.974359" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32941177" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Metrics" order="9" visible="true" weight="1.0" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32984293" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info id="UI Designer" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3277487" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="6" weight="0.4" />
       <window_info anchor="right" id="PlantUML" order="3" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.3294271" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="JProfiler" order="7" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="JProfiler" order="12" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info content_ui="combo" id="Project" order="5" weight="0.25032595" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="6" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.31413612" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Designer" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info id="UI Designer" order="1" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32984293" />
+      <window_info anchor="bottom" id="JProfiler" order="12" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32928476" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.32984293" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32853404" />
+      <window_info anchor="right" id="Maven Projects" order="4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -257,273 +464,360 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="IDEA Commit Test" />
+    <MESSAGE value="0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.1" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="8" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Elevator.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/SafeFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+        <state relative-caret-position="1617">
+          <caret line="255" column="27" selection-start-line="255" selection-start-column="27" selection-end-line="255" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scheduler.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        <state relative-caret-position="6468">
+          <caret line="314" selection-start-line="314" selection-end-line="314" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ElevatorSys.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/TestThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
+        <state relative-caret-position="1554">
+          <caret line="77" column="25" lean-forward="true" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestSimulator.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        <state relative-caret-position="756">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Request.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/TestThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
+        <state relative-caret-position="63">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Elevator.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/SnapShot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding>
+            <element signature="method#printFileStruct#0;class#SnapShot#0" />
+            <element signature="method#deepCopy#0;class#SnapShot#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Detail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Summary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Trigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2814">
+          <caret line="138" column="9" lean-forward="true" selection-start-line="138" selection-start-column="9" selection-end-line="138" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/SafeFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileOperater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Trigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3666">
+          <caret line="145" column="1" lean-forward="true" selection-start-line="145" selection-start-column="1" selection-end-line="145" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/SnapShot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="63" column="9" lean-forward="true" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+          <folding>
+            <element signature="method#printFileStruct#0;class#SnapShot#0" />
+            <element signature="method#deepCopy#0;class#SnapShot#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Workspace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1924">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/DEFINE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/SafeFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="57" lean-forward="true" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/DictMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Trigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/DEFINE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/SafeFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/DictMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1197">
+          <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Trigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1950">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/TriggerInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ElevatorSys.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Stair.java" />
-    <entry file="file://$PROJECT_DIR$/src/RequestSimulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1911">
-          <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Elevator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ElevatorSys.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Stair.java" />
-    <entry file="file://$PROJECT_DIR$/src/RequestSimulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Elevator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ElevatorSys.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/DEFINE.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Stair.java" />
-    <entry file="file://$PROJECT_DIR$/src/RequestSimulator.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/SafeFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+        <state relative-caret-position="78">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Request.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="260">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestQueue.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="156">
+          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Elevator.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/util/LinkedList.java" />
+    <entry file="file://$PROJECT_DIR$/IFTTT/DictMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        <state relative-caret-position="611">
+          <caret line="145" column="38" lean-forward="true" selection-start-line="145" selection-start-column="38" selection-end-line="145" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ElevatorSys.java">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="234">
+            <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Monitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        <state relative-caret-position="21">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Stair.java" />
-    <entry file="file://$PROJECT_DIR$/src/RequestSimulator.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/TriggerInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Request.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/Detail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="483">
+          <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestQueue.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/SafeFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1680">
+          <caret line="88" column="61" selection-start-line="88" selection-start-column="61" selection-end-line="88" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Elevator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/InputHandler.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/Integer.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/io/Reader.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/util/Scanner.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/io/InputStreamReader.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/Character.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/Object.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/Math.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/util/regex/Matcher.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/util/regex/Pattern.java" />
-    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/lang/String.java" />
-    <entry file="file://$PROJECT_DIR$/src/Stair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestSimulator.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/Summary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
-          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+          <caret line="33" column="37" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tray.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="567">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scheduler.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/SnapShot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="137" column="9" selection-start-line="137" selection-start-column="9" selection-end-line="137" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        <state relative-caret-position="399">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#printFileStruct#0;class#SnapShot#0" />
+            <element signature="method#deepCopy#0;class#SnapShot#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/TestThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2016">
+          <caret line="99" column="43" selection-start-line="99" selection-start-column="43" selection-end-line="99" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Trigger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="101" column="17" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/Workspace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IFTTT/DEFINE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -533,101 +827,88 @@
           <ID>JAVA</ID>
           <OriginalElement />
           <nodes>
-            <node x="149.45409226190472" y="0.0">Request</node>
-            <node x="253.6985119047619" y="262.5">Stair</node>
-            <node x="182.39159226190475" y="930.0">RequestSimulator</node>
-            <node x="537.9540922619047" y="285.0">Tray</node>
-            <node x="279.41056547619036" y="1063.0">ElevatorSys</node>
-            <node x="0.0" y="262.0">RequestQueue</node>
-            <node x="412.95409226190475" y="481.0">Elevator</node>
+            <node x="818.4007755265573" y="781.0">SnapShot</node>
+            <node x="1897.9827280792133" y="477.0">TestThread</node>
+            <node x="43.5" y="233.5">FileOperater</node>
+            <node x="450.5416595123629" y="0.0">DEFINE</node>
+            <node x="612.2430374313192" y="1911.0">Trigger</node>
+            <node x="576.9216088598905" y="896.5">Monitor</node>
+            <node x="495.9216088598905" y="1155.0">FileMonitor</node>
+            <node x="431.23214285714283" y="1523.0">DictMonitor</node>
+            <node x="1610.8636804601656" y="1557.5">TriggerInfo</node>
+            <node x="957.1890954097988" y="130.0">SafeFile</node>
+            <node x="370.82041838370014" y="546.0">Summary</node>
+            <node x="1047.1507755265573" y="2107.0">Main</node>
+            <node x="184.5" y="546.0">Detail</node>
+            <node x="1337.4007755265573" y="488.5">Workspace</node>
           </nodes>
           <notes />
           <edges>
-            <edge source="ElevatorSys" target="RequestQueue">
-              <point x="-61.599999999999966" y="-26.5" />
-              <point x="305.8105654761904" y="1033.0" />
-              <point x="132.80215773809516" y="1033.0" />
-              <point x="132.80215773809516" y="451.0" />
-              <point x="87.0" y="451.0" />
-              <point x="-29.0" y="84.5" />
+            <edge source="DictMonitor" target="DEFINE">
+              <point x="-57.69230769230762" y="-119.0" />
+              <point x="498.5398351648352" y="1453.0" />
+              <point x="355.0" y="1453.0" />
+              <point x="355.0" y="90.0" />
+              <point x="478.82737379807725" y="90.0" />
+              <point x="-15.714285714285666" y="15.0" />
             </edge>
-            <edge source="RequestQueue" target="Request">
-              <point x="87.0" y="-84.5" />
-              <point x="203.0" y="242.0" />
-              <point x="230.95409226190475" y="242.0" />
-              <point x="2.8421709430404007E-14" y="96.0" />
+            <edge source="FileMonitor" target="DEFINE">
+              <point x="35.75" y="-119.0" />
+              <point x="674.6716088598905" y="1095.0" />
+              <point x="739.4632755265573" y="1095.0" />
+              <point x="739.4632755265573" y="80.0" />
+              <point x="516.5416595123629" y="80.0" />
+              <point x="22.0" y="15.0" />
             </edge>
-            <edge source="ElevatorSys" target="Tray">
-              <point x="79.19999999999999" y="-26.5" />
-              <point x="446.61056547619035" y="1043.0" />
-              <point x="714.364657738095" y="1043.0" />
-              <point x="714.364657738095" y="461.0" />
-              <point x="744.4540922619047" y="461.0" />
-              <point x="88.5" y="61.5" />
+            <edge source="SafeFile" target="DEFINE">
+              <point x="-73.0" y="-118.5" />
+              <point x="1030.189095409799" y="70.0" />
+              <point x="522.8273737980772" y="70.0" />
+              <point x="28.285714285714334" y="15.0" />
             </edge>
-            <edge source="Tray" target="Request">
-              <point x="-59.0" y="-61.5" />
-              <point x="596.9540922619047" y="232.0" />
-              <point x="277.5255208333333" y="232.0" />
-              <point x="46.571428571428584" y="96.0" />
+            <edge source="Trigger" target="DEFINE">
+              <point x="-70.47619047619048" y="-38.0" />
+              <point x="615.7668469551286" y="1881.0" />
+              <point x="0.0" y="1881.0" />
+              <point x="0.0" y="50.0" />
+              <point x="453.68451665522" y="50.0" />
+              <point x="-40.85714285714289" y="15.0" />
             </edge>
-            <edge source="ElevatorSys" target="RequestSimulator">
-              <point x="-8.800000000000011" y="-26.5" />
-              <point x="358.61056547619035" y="1003.0" />
-              <point x="296.39159226190475" y="1003.0" />
-              <point x="38.0" y="26.5" />
+            <edge source="Summary" target="DEFINE">
+              <point x="-35.0" y="-38.0" />
+              <point x="405.82041838370014" y="457.0" />
+              <point x="441.61103909111773" y="457.0" />
+              <point x="441.61103909111773" y="100.0" />
+              <point x="485.11308808379147" y="100.0" />
+              <point x="-9.428571428571445" y="15.0" />
             </edge>
-            <edge source="Elevator" target="Request">
-              <point x="0.0" y="-199.5" />
-              <point x="527.4540922619047" y="242.0" />
-              <point x="254.23980654761903" y="242.0" />
-              <point x="23.285714285714306" y="96.0" />
+            <edge source="FileOperater" target="DEFINE">
+              <point x="0.0" y="-15.0" />
+              <point x="103.5" y="70.0" />
+              <point x="466.2559452266486" y="70.0" />
+              <point x="-28.285714285714334" y="15.0" />
             </edge>
-            <edge source="ElevatorSys" target="Elevator">
-              <point x="26.400000000000034" y="-26.5" />
-              <point x="393.8105654761904" y="1013.0" />
-              <point x="573.1146577380952" y="1013.0" />
-              <point x="573.1146577380952" y="910.0" />
-              <point x="556.0790922619047" y="910.0" />
-              <point x="28.625" y="199.5" />
+            <edge source="Monitor" target="DEFINE">
+              <point x="23.25" y="-26.5" />
+              <point x="662.1716088598905" y="741.0" />
+              <point x="701.5882755265573" y="741.0" />
+              <point x="701.5882755265573" y="90.0" />
+              <point x="510.2559452266486" y="90.0" />
+              <point x="15.714285714285666" y="15.0" />
             </edge>
-            <edge source="RequestSimulator" target="RequestQueue">
-              <point x="-19.0" y="-26.5" />
-              <point x="239.39159226190475" y="900.0" />
-              <point x="154.80215773809516" y="900.0" />
-              <point x="154.80215773809516" y="451.0" />
-              <point x="203.0" y="451.0" />
-              <point x="87.0" y="84.5" />
-            </edge>
-            <edge source="ElevatorSys" target="Stair">
-              <point x="8.800000000000011" y="-26.5" />
-              <point x="376.21056547619037" y="1043.0" />
-              <point x="368.82909226190475" y="1043.0" />
-              <point x="368.82909226190475" y="461.0" />
-              <point x="342.57351190476186" y="461.0" />
-              <point x="-29.625" y="84.0" />
-            </edge>
-            <edge source="Elevator" target="Stair">
-              <point x="-91.60000000000002" y="-199.5" />
-              <point x="435.8540922619047" y="461.0" />
-              <point x="401.82351190476186" y="461.0" />
-              <point x="29.625" y="84.0" />
-            </edge>
-            <edge source="RequestSimulator" target="Elevator">
-              <point x="19.0" y="-26.5" />
-              <point x="277.39159226190475" y="900.0" />
-              <point x="441.57909226190475" y="900.0" />
-              <point x="-85.875" y="199.5" />
-            </edge>
-            <edge source="Elevator" target="Tray">
-              <point x="45.799999999999955" y="-199.5" />
-              <point x="573.2540922619047" y="461.0" />
-              <point x="567.4540922619047" y="461.0" />
-              <point x="-88.5" y="61.5" />
+            <edge source="TriggerInfo" target="DEFINE">
+              <point x="0.0" y="-84.5" />
+              <point x="1726.3636804601656" y="1503.0" />
+              <point x="2156.4827280792133" y="1503.0" />
+              <point x="2156.4827280792133" y="50.0" />
+              <point x="535.3988023695058" y="50.0" />
+              <point x="40.85714285714289" y="15.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="-143.0" y="665.0" />
-          <SelectedNodes />
+          <settings layout="Hierarchic Group" zoom="0.22018348623853212" x="1078.5" y="1080.0" />
+          <SelectedNodes>
+            <node>SnapShot</node>
+          </SelectedNodes>
           <Categories>
             <Category>Methods</Category>
             <Category>Properties</Category>
@@ -637,20 +918,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ElevatorSys.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/FileOperater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Elevator.java">
+    <entry file="file://$PROJECT_DIR$/IFTTT/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        <state relative-caret-position="6">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -706,7 +987,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Git</last-edited>
+          <last-edited>IFTTT</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
