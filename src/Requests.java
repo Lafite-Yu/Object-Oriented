@@ -44,9 +44,9 @@ public class Requests
         String REGEX= "(\\(FR,\\+?\\d{1,2},(UP|DOWN),\\+?\\d{1,10}\\))|(\\(ER,\\+?\\d{1,2},\\+?\\d{1,10}\\))";
         Pattern P = Pattern.compile(REGEX);
         Matcher M = P.matcher(str);
-        if (!M.lookingAt())
+        if (!M.matches())
         {
-            print("不符合语法规则");
+            print(str, "不符合语法规则");
             return false;
         }
         // valueCheck
@@ -54,7 +54,7 @@ public class Requests
         long floor = Long.parseLong(s[2]);
         if (floor > 10 || floor < 1)
         {
-            print("请求的楼层不合法");
+            print(str, "请求的楼层不合法");
             return false;
         }
         long time;
@@ -69,7 +69,7 @@ public class Requests
             {
                 if (floor == 10)
                 {
-                    print("尝试在10楼按下向上键");
+                    print(str, "尝试在10楼按下向上键");
                     return false;
                 }
             }
@@ -78,21 +78,21 @@ public class Requests
 //                System.out.println("OJBK");
                 if (floor == 1)
                 {
-                    print("尝试在1楼按下向下键");
+                    print(str, "尝试在1楼按下向下键");
                     return false;
                 }
             }
         }
         if (time < 0 || time > 2*(long)Integer.MAX_VALUE+1)
         {
-            print("时间超出范围");
+            print(str, "时间超出范围");
             return false;
         }
         if (!start)
         {
-            if (time != 0)
+            if (time != 0 || floor != 1)
             {
-                print("请求没有从0时刻开始");
+                print(str, "请求没有从0时刻开始");
                 return false;
             }
             else
@@ -100,7 +100,7 @@ public class Requests
         }
         if (time < previousTime)
         {
-            print("没有按时间不减的顺序输入");
+            print(str, "没有按时间不减的顺序输入");
             return false;
         }
         else
@@ -132,9 +132,9 @@ public class Requests
 		return requestQueue;
 	}
 
-	private void print(String s)
+	private void print(String input, String reason)
     {
-        System.out.println("ERROR");
-        System.out.println("# 非法请求:" + s);
+        System.out.printf("INVALID[%s]\n", input);
+//        System.out.println("# 非法请求:" + reason);
     }
 }

@@ -3,7 +3,7 @@ public class RequestsQueue
 	private long[] requestType;
 	private long[] floor;
 	private long[] time;
-	private boolean[] flag; // 初始化为false，false代表有效
+	private long[] flag; // 初始化为0，0代表有效
     private int start, end;
     
 	public RequestsQueue()
@@ -11,7 +11,7 @@ public class RequestsQueue
 		requestType = new long[120];
 		floor = new long[120];
 		time = new long[120];
-		flag = new boolean[120];
+		flag = new long[120];
         start = 0;
         end = 0;
 	}
@@ -43,7 +43,7 @@ public class RequestsQueue
         info[1] = requestType[start];
         info[2] = floor[start];
         info[3] = time[start];
-        info[4] = flag[start] ? 1 : 0;
+        info[4] = flag[start];
         start += 1;
 		return info;
     }
@@ -55,14 +55,33 @@ public class RequestsQueue
         info[1] = requestType[i];
         info[2] = floor[i];
         info[3] = time[i];
-        info[4] = flag[i] ? 1 : 0;
+        info[4] = flag[i];
         return info;
     }
 
 
-    public void setInvalid(int i)
+    public void setSame(int i)
     {
-        flag[i] = true;
+        flag[i] = 1;
     }
 
+    public void setPick(int i)
+    {
+        flag[i] = 2;
+    }
+
+    public void setComplete(int i)
+    {
+        flag[i] = 3;
+    }
+
+    public void setSameFloor(int i)
+    {
+        flag[i] = 4;
+    }
+    
+    public void setSameFloor(int index, int depth)
+    {
+        flag[index] = 4+depth;
+    }
 }

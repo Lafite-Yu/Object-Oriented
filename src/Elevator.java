@@ -6,7 +6,6 @@ public class Elevator
     {
         light = new boolean[10];
     }
-    \
 
     public boolean getLight(int floor)
     {
@@ -24,5 +23,4 @@ public class Elevator
         light[floor-1] = false;
         return false;
     }
-
 }
