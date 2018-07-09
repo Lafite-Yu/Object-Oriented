@@ -1,458 +1,226 @@
-import static java.lang.Math.abs;
+import java.io.PrintStream;
+import java.util.LinkedList;
 
-public class Scheduler extends Dispatcher implements IF
+public class Scheduler extends Thread
 {
-    private int depth;
-    public Scheduler(RequestsQueue RQ)
+    private RequestQueue requestqueue;
+    private Elevator[] elevator;
+    private LinkedList<Request> allRequests;
+    private Tray tray;
+    private Stair stair;
+    private long startTime;
+    private volatile boolean endSignal;
+    private PrintStream ps;
+
+    public Scheduler(RequestQueue queue, Elevator e1, Elevator e2, Elevator e3, Tray tray, Stair stair, long time, boolean signal, PrintStream ps)
     {
-        super(RQ);
-        depth = 0;
+        this.requestqueue = queue;
+        this.elevator = new Elevator[4];
+        this.elevator[1] = e1;
+        this.elevator[2] = e2;
+        this.elevator[3] = e3;
+        this.tray = tray;
+        this.allRequests = new LinkedList<Request>();
+        this.stair = stair;
+        this.startTime = time;
+        this.endSignal = signal;
+        this.ps = ps;
     }
 
-    @Override
-    public void schedule()
+    public void run()
     {
-        if (!requestsQueue.isEmpty())
-            info = requestsQueue.pop();
-        int pickCounter = 0;
-        int sameFloorPickCounter = 0;
-        while (true)
+        while (!endSignal || this.allRequests.size() != 0)
         {
-            requestIndex = info[0];
-            requestType = info[1];
-            requestFloor = info[2];
-            requestTime = info[3];
-            requestFlag = info[4];
-
-//            System.out.println("# "+requestIndex);
-
-            if(requestFlag != 1 && requestFlag != 3)
-            // 有效 未执行
+//            System.out.println("Scheduler running.");
+            LinkedList<Request> tempQueue = requestqueue.fetch();
+            if (endSignal)
+                System.out.println(endSignal);
+            for (int i = 0; i < tempQueue.size(); i++)
             {
-                if(requestFloor == currentFloor)
-                // 目标楼层和现楼层相同 STILL
+                allRequests.addLast(tempQueue.get(i));
+                System.out.printf("Request:%s\t add to Scheduler. Queue size:%d type:%d\n", allRequests.getLast().toString(), allRequests.size(), allRequests.getFirst().getRequestType());
+            }
+            while (allRequests.size() != 0)
+            {
+//                System.out.println(allRequests.size());
+                for (int i = 0; i < allRequests.size(); i++)
                 {
-                    timer = timer > requestTime ? timer : requestTime;
-                    timer += 1;
-                    this.toString(requestIndex, 0);
-                    requestsQueue.setComplete((int)requestIndex);
-                    int scanCounter = (int)requestIndex+1;
-//                    this.sameJudger(scanCounter);
-                    while(!requestsQueue.isEmpty(scanCounter))
+//                    System.out.println(allRequests.get(i).getFlag() + "\t" + elevatorSelect(allRequests.get(i)) + "\t" + pickJudger(allRequests.get(i), elevator[1]));
+                    if (allRequests.get(i).getRequestType() == -1)
                     {
-                        if ( getRequestQueueTime(scanCounter)>timer )
-                            break;
-                        else
-                        // 指令发出后，电梯门关闭前
+                        if (allRequests.size() == 1)
                         {
-                            if ( getRequestQueueType(scanCounter)==requestType && getRequestQueueFloor(scanCounter)==requestFloor )
-                                //操作类型相同且目标楼层相同
-                                requestsQueue.setSame(scanCounter);
+                            System.out.println("Scheduler Stopped.");
+                            elevator[1].stopMe();
+                            elevator[2].stopMe();
+                            elevator[3].stopMe();
+                            return;
                         }
-                        scanCounter ++;
-                    }
-                }
-                else
-                // 目标楼层和现楼层不同
-                {
-                    timer = timer > requestTime ? timer : requestTime;
-                    double endTime = abs(currentFloor - requestFloor)*0.5 + timer;
-                    int direction = (requestFloor - currentFloor) > 0 ? 1 : 2; // 1: UP 2: DOWN
-                    int scanCounter = 0;
-//                    System.out.println("OJBK");
-                    while(!requestsQueue.isEmpty(scanCounter))
-                    {
-//                        System.out.println("scanCounter0:\t"+scanCounter);
-                        if (getRequestQueueFlag(scanCounter) == 3 || getRequestQueueFlag(scanCounter) == 1)
-                        {
-                            scanCounter += 1;
+                        else
                             continue;
-                        }
-                        if ( getRequestQueueTime(scanCounter) > endTime+1)
-                            break;
-                        else if (getRequestQueueTime(scanCounter) >= endTime)
-                        {
-                            sameJudger((int)requestIndex, scanCounter);
-                        }
-                        else
-                        {
-//                            System.out.println("scanCounter0:\t"+scanCounter);
-//                            System.out.println("direction:"+direction);
-                            if ( !sameJudger((int)requestIndex, scanCounter) )
-                            {
-                                if (direction == 1) //UP
-                                {
-                                    if (getRequestQueueType(scanCounter) == 1 )
-                                    {
-                                        if (currentFloor < getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) < requestFloor)
-                                        {
-                                            if ((getRequestQueueFloor(scanCounter) - currentFloor) * 0.5 + timer > getRequestQueueTime(scanCounter))
-                                            {
-                                                endTime += identifier(scanCounter);
-                                            }
-                                        }
-                                        else if (getRequestQueueFloor(scanCounter) == requestFloor)
-                                        {
-                                            if (scanCounter > requestIndex)
-                                            {
-                                                requestsQueue.setSameFloor(scanCounter);
-                                                sameFloorPickCounter += 1;
-                                            }
-                                            else
-                                                endTime += identifier(scanCounter);
-                                        }
-                                    }
-                                    else if (getRequestQueueType(scanCounter) == 0)
-                                    {
-                                        if (currentFloor < getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) < requestFloor)
-                                        {
-                                            if ( (getRequestQueueFloor(scanCounter) - currentFloor)*0.5+timer > getRequestQueueTime(scanCounter) )
-                                            {
-                                                endTime += identifier(scanCounter);
-                                            }
-                                        }
-                                        else if (requestFloor == getRequestQueueFloor(scanCounter))
-                                        {
-                                            if (scanCounter > requestIndex)
-                                            {
-                                                requestsQueue.setSameFloor(scanCounter);
-                                                sameFloorPickCounter += 1;
-                                            }
-                                            else
-                                                endTime += identifier(scanCounter);
-                                        }
-                                        else if (requestFloor < getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) <= 10)
-                                        {
-                                            requestsQueue.setPick(scanCounter);
-                                            pickCounter += 1;
-                                        }
-                                    }
-                                }
-                                else // DOWN
-                                {
-//                                    System.out.println("requestType:"+getRequestQueueType(scanCounter));
-                                    if (getRequestQueueType(scanCounter) == 2 )
-                                    {
-                                        if (currentFloor > getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) > requestFloor)
-                                        {
-                                            if ( (currentFloor - getRequestQueueFloor(scanCounter))*0.5+timer > getRequestQueueTime(scanCounter) )
-                                            {
-                                                endTime += identifier(scanCounter);
-                                            }
-                                        }
-                                        else if (getRequestQueueFloor(scanCounter) == requestFloor)
-                                        {
-                                            if (scanCounter > requestIndex)
-                                            {
-                                                requestsQueue.setSameFloor(scanCounter);
-                                                sameFloorPickCounter ++;
-                                            }
-                                            else
-                                                endTime += identifier(scanCounter);
-                                        }
-                                    }
-                                    else if (getRequestQueueType(scanCounter) == 0)
-                                    {
-                                        if (currentFloor > getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) > requestFloor)
-                                        {
-                                            if ( (currentFloor - getRequestQueueFloor(scanCounter))*0.5+timer > getRequestQueueTime(scanCounter) )
-                                            {
-                                                endTime += identifier(scanCounter);
-                                            }
-                                        }
-                                        else if (requestFloor == getRequestQueueFloor(scanCounter))
-                                        {
-                                            if (scanCounter > requestIndex)
-                                            {
-                                                requestsQueue.setSameFloor(scanCounter);
-                                                sameFloorPickCounter += 1;
-                                            }
-                                            else
-                                                endTime += identifier(scanCounter);
-                                        }
-                                        else if (requestFloor > getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) >= 1)
-                                        {
-                                                requestsQueue.setPick(scanCounter);
-                                                pickCounter += 1;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        scanCounter += 1;
-//                        System.out.println("scanCounter1:\t"+scanCounter);
-                    }
-                    /* 执行该指令 */
-                    if (getRequestQueueFlag((int)requestIndex) != 3)
+                    } else if (allRequests.get(i).getFlag() == 0 && sameJudger(allRequests.get(i)))
                     {
-                        timer = endTime;
-                        currentFloor = requestFloor;
-                        requestsQueue.setComplete((int) requestIndex);
-//                        System.out.println("test1:"+requestIndex);
-                        toString(requestIndex, direction);
-//                        System.out.println("samefloor:\t"+sameFloorPickCounter);
-                        /* 同层捎带处理 同层捎带同质判断 */
-                        int j = (int) requestIndex;
-                        for (; sameFloorPickCounter > 0; sameFloorPickCounter--)
-                        {
-                            while (!requestsQueue.isEmpty(j))
-                            {
-                                if (getRequestQueueFlag(j) == 4)
-                                    break;
-                                else
-                                    j++;
-                            }
-                            if (!requestsQueue.isEmpty(j))
-                            {
-                                requestsQueue.setComplete(j);
-                                //                            System.out.println("test0:"+j);
-                                toString(j, direction);
-                                int k = j + 1;
-                                while (!requestsQueue.isEmpty(k))
-                                {
-                                    if (getRequestQueueTime(k) > timer + 1)
-                                        break;
-                                    else
-                                        sameJudger(j, k);
-                                    k++;
-                                }
-                                j++;
-                            }
-                        }
-                        timer += 1;
-                    }
-                }
-            }
-            else if (requestFlag == 1)
-            // 无效
-            {
-                toString(requestIndex);
-            }
-//            else if (requestFlag == 3)
-//            // 已执行
-//            {
-//            }
-            /* 确认是否捎带队列是否为空 */
-            if (pickCounter > 0)
-            {
-                int j = 0;
-                while (!requestsQueue.isEmpty(j))
-                {
-                    if (getRequestQueueFlag(j) == 2)
+                        allRequests.get(i).setFlag(1);
+                        samePrint(allRequests.get(i));
+                        allRequests.remove(i);
+                        break;
+                    } else if (allRequests.get(i).getFlag() == 0 && elevatorSelect(allRequests.get(i)) != 0)
                     {
-                        pickCounter = 0;
-                        info = requestsQueue.get(j);
+//                    System.out.println("i:"+i);
+                        allRequests.get(i).setFlag(1);
+//                    System.out.printf("Elevator Select:%d\n", elevatorSelect(allRequests.get(i)) );
+                        tray.put(allRequests.get(i), elevatorSelect(allRequests.get(i)));
+                        allRequests.remove(i);
+                        try
+                        {
+                            sleep(2);
+                        } catch (InterruptedException e)
+                        {
+                            e.printStackTrace();
+                        }
                         break;
                     }
-                    else
-                        j++;
                 }
-            }
-            else
-            {
-                if (!requestsQueue.isEmpty())
-                {
-                    info = requestsQueue.pop();
-                }
-                else
-                    break;
             }
         }
+        elevator[1].stopMe();
+        elevator[2].stopMe();
+        elevator[3].stopMe();
+        System.out.println("Scheduler Stopped.");
     }
 
-
-    @Override
-    public int identifier(int index)
+    private int elevatorSelect(Request request)
     {
-//        System.out.printf("# identifier:\t");
-//        toString(index);
-        depth += 1;
-//        System.out.print("depth:"+depth);
-//        System.out.println("\tidentifier:\t"+index);
-        int pickTime = 1;
-        double endTime = abs(currentFloor - getRequestQueueFloor(index))*0.5 + timer;
-        int direction = (getRequestQueueFloor(index) - currentFloor) > 0 ? 1 : 2; // 1: UP 2: DOWN
-        int scanCounter = index+1;
-        int sameFloorPickCounter = 0;
-        while(!requestsQueue.isEmpty(scanCounter))
+        if (request.getRequestType() == -1)
+            return 0;
+        int availableCount = 0;
+        int availableElevator = 0;
+        int i = 0, j = 0;
+        boolean[] elevatorCondition = new boolean[4];
+        for (i = 1; i < 4; i++)
         {
-            if (getRequestQueueFlag(scanCounter) == 3 || getRequestQueueFlag(scanCounter) == 1)
+            elevatorCondition[i] = pickJudger(request, elevator[i]);
+            if (elevatorCondition[i])
             {
-                scanCounter += 1;
-                continue;
+                availableCount++;
+//                System.out.println("Pick Elevator:" + i);
             }
-            if ( getRequestQueueTime(scanCounter) > endTime+1)
-                break;
-            else if (getRequestQueueTime(scanCounter) >= endTime)
+        }
+        if (availableCount == 0)
+        {
+            if (request.getRequestType() == 0) // ER
             {
-                sameJudger(index, scanCounter);
-            }
-            else
+                if (elevator[request.getElevatorNum()].getStatus() == 0)
+                    return request.getElevatorNum();
+                else
+                    return 0;
+            } else // FR
             {
-                if ( !sameJudger(index, scanCounter) )
+                for (i = 1; i < 4; i++)
                 {
-//                    System.out.println("direction:"+direction);
-                    if (direction == 1) //UP
+                    elevatorCondition[i] = (elevator[i].getStatus() == 0);
+                    if (elevatorCondition[i])
                     {
-                        if (getRequestQueueType(scanCounter) == 1 || getRequestQueueType(scanCounter) == 0)
+                        availableCount++;
+                        if (availableCount == 1)
                         {
-                            if (currentFloor < getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) < getRequestQueueFloor(index))
-                            {
-                                if ((getRequestQueueFloor(scanCounter) - currentFloor) * 0.5 + timer > getRequestQueueTime(scanCounter))
-                                {
-                                    pickTime += 1;
-                                    endTime += identifier(scanCounter);
-                                }
-                            }
-                            else if (getRequestQueueFloor(scanCounter) == getRequestQueueFloor(index))
-                            {
-                                if (scanCounter > index)
-                                {
-                                    sameFloorPickCounter += 1;
-//                                    pickTime += 1;
-//                                    System.out.println("同层捎带请求 pickTime:"+pickTime);
-                                    requestsQueue.setSameFloor(scanCounter, depth);
-                                }
-//                                else
-//                                {
-//                                    endTime += identifier(scanCounter);
-//                                    pickTime += 1;
-//                                }
-                            }
+                            availableElevator = i;
+                        } else if (availableCount > 1)
+                        {
+                            availableElevator = (elevator[availableElevator].getMoveDis() <= elevator[i].getMoveDis()) ? availableElevator : i;
                         }
                     }
-                    else // DOWN
+
+                }
+                return availableElevator;
+            }
+
+        }
+        else
+        {
+            int x = 0;
+            for (i = 1; i < 4; i++)
+            {
+                if (elevatorCondition[i])
+                {
+                    x += 1;
+                    if (x == 1)
                     {
-                        if (getRequestQueueType(scanCounter) == 2 || getRequestQueueType(scanCounter) == 0)
-                        {
-                            if (currentFloor > getRequestQueueFloor(scanCounter) && getRequestQueueFloor(scanCounter) > getRequestQueueFloor(index))
-                            {
-                                if ((currentFloor - getRequestQueueFloor(scanCounter)) * 0.5 + timer > getRequestQueueTime(scanCounter))
-                                {
-                                    pickTime += 1;
-                                    endTime += identifier(scanCounter);
-                                }
-                            }
-                            else if (getRequestQueueFloor(scanCounter) == getRequestQueueFloor(index))
-                            {
-                                if (scanCounter > index)
-                                {
-                                    sameFloorPickCounter += 1;
-//                                    pickTime += 1;
-//                                    System.out.println("同层捎带请求 pickTime:"+pickTime);
-                                    requestsQueue.setSameFloor(scanCounter, depth);
-                                }
-//                                else
-//                                {
-//                                    endTime += identifier(scanCounter);
-//                                    pickTime ++;
-//                                }
-                            }
-                        }
+                        availableElevator = i;
+                    } else if (x > 1)
+                    {
+                        availableElevator = (elevator[availableElevator].getMoveDis() <= elevator[i].getMoveDis()) ? availableElevator : i;
                     }
                 }
             }
-            scanCounter += 1;
+            return availableElevator;
         }
-        timer = endTime;
-        currentFloor = getRequestQueueFloor(index);
-        requestsQueue.setComplete(index);
-        toString(index, direction);
-        /* 同层捎带处理 */
-        int j = index;
-//        System.out.println("OJBK");
-        for (; sameFloorPickCounter > 0; sameFloorPickCounter--)
+    }
+
+    private boolean pickJudger(Request request, Elevator elevator)
+    {
+        if (request.getRequestType() == 1) // FR
         {
-//            System.out.println("sameFloorPickCounter 1:\t"+sameFloorPickCounter);
-            while(!requestsQueue.isEmpty(j))
+//            System.out.println(elevator.getElevatorNum() + " " + elevator.getTargetFloor() + " " + elevator.getCurrentFloor() + " " + request.getDstFloor() + " " + elevator.getDirection() + " " + request.getDirection());
+            if ((elevator.getTargetFloor() >= request.getDstFloor() && elevator.getCurrentFloor() < request.getDstFloor() && request.getDirection() == elevator.getDirection() && request.getDirection() == 1) ||
+                    (elevator.getTargetFloor() <= request.getDstFloor() && elevator.getCurrentFloor() > request.getDstFloor() && request.getDirection() == elevator.getDirection() && request.getDirection() == -1) ||
+                    (elevator.getTargetFloor() == request.getDstFloor() && elevator.getStatus() == 0))
+                return true;
+            else
+                return false;
+        } else if (request.getRequestType() == 0)// ER
+        {
+            if (elevator.getElevatorNum() == request.getElevatorNum())
             {
-                if (getRequestQueueFlag(j) == 4+depth)
-                    break;
+                if ((elevator.getCurrentFloor() < request.getDstFloor() && elevator.getDirection() == 1) ||
+                        (elevator.getCurrentFloor() > request.getDstFloor() && elevator.getDirection() == -1) ||
+                        (elevator.getCurrentFloor() == request.getDstFloor() && elevator.getStatus() == 0))
+                    return true;
                 else
-                    j++;
-            }
-//            System.out.println("sameFloorPickCounter 2:\t"+sameFloorPickCounter);
-            if ( !requestsQueue.isEmpty(j) )
+                    return false;
+            } else
+                return false;
+        } else
+            return false;
+    }
+
+    private boolean sameJudger(Request request)
+    {
+        if (request.getRequestType() == 0) // ER
+        {
+            int id = request.getElevatorNum();
+            return elevator[id].getLight(request.getDstFloor());
+        } else if (request.getRequestType() == 1)// FR
+        {
+            int direction = request.getDirection();
+            if (direction == 1) // UP
             {
-                requestsQueue.setComplete(j);
-                toString(j, direction);
-                int k = j+1;
-                while (!requestsQueue.isEmpty(k))
-                {
-                    if ( getRequestQueueTime(k) > timer+1 )
-                        break;
-                    else
-                        sameJudger(j, k);
-                    k++;
-                }
-//            System.out.println("sameFloorPickCounter 3:\t"+sameFloorPickCounter);
-                j += 1;
+                return stair.getUpLight(request.getDstFloor());
+            } else // DOWN
+            {
+                return stair.getDownLight(request.getDstFloor());
             }
-        }
-        timer += 1;
-//        System.out.println("pickTime:"+pickTime);
-        depth -= 1;
-        return pickTime;
+        } else
+            return false;
     }
 
-    public boolean sameJudger(int requestIndex, int scanCounter)
+    private void samePrint(Request request)
     {
-        if ( getRequestQueueType(scanCounter)==getRequestQueueType(requestIndex) && getRequestQueueFloor(scanCounter)==getRequestQueueFloor(requestIndex) && getRequestQueueTime(requestIndex) <= getRequestQueueTime(scanCounter))
-            //操作类型相同且目标楼层相同
-        {
-            requestsQueue.setSame(scanCounter > requestIndex ? scanCounter : requestIndex);
-            return true;
-        }
-        return false;
+        System.out.printf("#%d:SAME[%s]\n", System.currentTimeMillis(), request.toString());
+        ps.printf("#%d:SAME[%s]\n", System.currentTimeMillis(), request.toString());
     }
 
-    public String toString()
+    public void setStartTime(long startTime)
     {
-        String s = String.format("电梯运行状态：当前时间：%f\t当前楼层%d\t", timer, currentFloor);
-        System.out.println(s);
-        return s;
-    }
-    private void toString(long index)
-    {
-//        System.out.printf("# 同质请求：输入的第%d条合法请求\n", index+1);
-        int i = (int)index;
-        if (getRequestQueueType(i) == 0) //ER
-        {
-            System.out.printf("#SAME[ER,%d,%d]\n", getRequestQueueFloor(i), getRequestQueueTime(i));
-        }
-        else if (getRequestQueueType(i) == 1) // FR UP
-        {
-            System.out.printf("#SAME[FR,%d,UP,%d]\n", getRequestQueueFloor(i), getRequestQueueTime(i));
-        }
-        else if (getRequestQueueType(i) == 2) // FR DOWN
-        {
-            System.out.printf("#SAME[FR,%d,DOWN,%d]\n", getRequestQueueFloor(i), getRequestQueueTime(i));
-        }
+        this.startTime = startTime;
     }
 
-    private void toString(long index, int status)
+    public void stopMe()
     {
-        int i = (int)index;
-//        System.out.println("\nindex:"+i);
-        if (getRequestQueueType(i) == 0) //ER
-        {
-            System.out.printf("[ER,%d,%d]/", getRequestQueueFloor(i), getRequestQueueTime(i));
-        }
-        else if (getRequestQueueType(i) == 1) // FR UP
-        {
-            System.out.printf("[FR,%d,UP,%d]/", getRequestQueueFloor(i), getRequestQueueTime(i));
-        }
-        else if (getRequestQueueType(i) == 2) // FR DOWN
-        {
-            System.out.printf("[FR,%d,DOWN,%d]/", getRequestQueueFloor(i), getRequestQueueTime(i));
-        }
-//        System.out.println("\tstatus:"+status);
-        if (status == 0)
-            System.out.printf("(%d,STILL,%.1f)\n", currentFloor, timer);
-        else if (status == 1)
-            System.out.printf("(%d,UP,%.1f)\n", currentFloor, timer);
-        else if (status == 2)
-            System.out.printf("(%d,DOWN,%.1f)\n", currentFloor, timer);
+        this.endSignal = true;
+//        System.out.println("Size:" + this.allRequests.size());
+        Thread.currentThread().interrupt();
     }
+
 
 }
