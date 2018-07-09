@@ -31,6 +31,7 @@ public class GUIInfo
     }
 
     public int[][] map;
+    int[][] backupGraph = new int[6405][6405];
     int[][] graph = new int[6405][6405];// 邻接矩阵
     int[][] D = new int[6405][6405];// 保存从i到j的最小路径值
     Node[] nodes = new Node[6405];
@@ -69,9 +70,13 @@ public class GUIInfo
             }
         }
 
+        for (int i = 0; i < 6405; i++)
+            for (int j = 0; j < 6405; j++)
+                backupGraph[i][j] = graph[i][j];
+
     }
 
-    public void pointbfs(int root)
+    public void pointbfs(int root, boolean VIPTaxi)
     {
         // 单点广度优先搜索
         // Requires:int类型的点号root
@@ -104,7 +109,7 @@ public class GUIInfo
             for (int i = 1; i <= 4; i++)
             {
                 int next = n.NO + offset[i];
-                if (next >= 0 && next < 6400 && view[next] == false && graph[n.NO][next] == 1)
+                if ((next >= 0 && next < 6400 && view[next] == false && graph[n.NO][next] == 1 && !VIPTaxi) || (next >= 0 && next < 6400 && view[next] == false && backupGraph[n.NO][next] == 1 && VIPTaxi))
                 {
                     view[next] = true;
                     queue.add(new node(next, n.depth + 1));// 加入遍历队列
@@ -130,7 +135,7 @@ public class GUIInfo
 //        }
     }
 
-    public void liteFluxBFS(int root)
+    public void liteFluxBFS(int root, boolean VIPTaxi)
     {
         // 应对请求的发出地进行BFS，可同时得到接乘客、送乘客的两条最短路径
         // Requires:int类型的点号root
@@ -151,7 +156,7 @@ public class GUIInfo
             for (int i = 1; i <= 4; i++)
             {
                 int next = n.NO + offset[i];
-                if (next >= 0 && next < 6400 && graph[n.NO][next] == 1)
+                if ((next >= 0 && next < 6400 && graph[n.NO][next] == 1 && !VIPTaxi) || (next >= 0 && next < 6400 && backupGraph[n.NO][next] == 1 && VIPTaxi))
                 {
                     if (view[next] == false)
                     {
@@ -174,13 +179,13 @@ public class GUIInfo
         }
     }
 
-    public synchronized LinkedList<Integer> getPath(Point cur, Point src, Point dst, boolean reachedSrc)
+    public synchronized LinkedList<Integer> getPath(Point cur, Point src, Point dst, boolean reachedSrc, boolean VIPTaxi)
     {
         synchronized (GUIGv.m.map)
         {
             if (!reachedSrc)
             {
-                this.liteFluxBFS(src.x*80 + src.y);
+                this.liteFluxBFS(src.x*80 + src.y, VIPTaxi);
                 LinkedList<Integer> movePath = new LinkedList<>();
                 LinkedList<Integer> srcToDst = new LinkedList<>();
                 int point = dst.x*80+dst.y;
@@ -205,7 +210,7 @@ public class GUIInfo
                 return movePath;
             } else
             {
-                this.liteFluxBFS(dst.x*80 + dst.y);
+                this.liteFluxBFS(dst.x*80 + dst.y, VIPTaxi);
                 LinkedList<Integer> movePath = new LinkedList<>();
                 int point = cur.x*80+cur.y;
                 while (point != dst.x*80+dst.y)
@@ -221,27 +226,30 @@ public class GUIInfo
         }
     }
 
-    public int distance(int x1, int y1, int x2, int y2)
+    public int distance(int x1, int y1, int x2, int y2, boolean VIPTaxi)
     {// 使用bfs计算两点之间的距离
-        pointbfs(x1 * 80 + y1);
+        pointbfs(x1 * 80 + y1, VIPTaxi);
         return D[x1 * 80 + y1][x2 * 80 + y2];
     }
 
-    public int getDis(Point src, Point dst)
+    public int getDis(Point src, Point dst, boolean VIPTaxi)
     {
         synchronized (GUIGv.m.map)
         {
-            return distance(src.x, src.y, dst.x, dst.y);
+            return distance(src.x, src.y, dst.x, dst.y, VIPTaxi);
         }
     }
 
-    public boolean isConnect(int src, int dst)
+    public boolean isConnect(int src, int dst, boolean VIPTaxi)
     {
         synchronized (graph)
         {
             try
             {
-                return graph[src][dst] == 1;
+                if (!VIPTaxi)
+                    return graph[src][dst] == 1;
+                else
+                    return backupGraph[src][dst] == 1;
             } catch (Exception e)
             {
                 return false;

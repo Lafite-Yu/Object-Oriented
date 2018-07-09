@@ -14,7 +14,7 @@ public class FileWriter
      */
     private PrintStream ps;
     private PrintStream sps;
-    private long startTime;
+    public long startTime;
 
     /** @REQUIRES: None;
      * @MODIFIES: this;

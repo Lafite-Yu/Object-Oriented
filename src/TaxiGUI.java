@@ -43,6 +43,11 @@ public class TaxiGUI
         GUIGv.m.initmatrix();// 初始化邻接矩阵
     }
 
+    public void SetTaxiType(int index, int type) {
+        guitaxi gt = GUIGv.taxilist.get(index);
+        gt.type = type;
+    }
+
     public void SetTaxiStatus(int index, Point point, int status)
     {
         guitaxi gt = GUIGv.taxilist.get(index);
@@ -57,9 +62,9 @@ public class TaxiGUI
         // 将src周围标红
         GUIGv.srclist.add(src);
         // 计算最短路径的值,通过一个窗口弹出
-        int distance = GUIGv.m.distance(src.x, src.y, dst.x, dst.y);
-        debugform form1 = new debugform();
-        form1.text1.setText("从(" + src.x + "," + src.y + ")到(" + dst.x + "," + dst.y + ")的最短路径长度是" + distance);
+        int distance = GUIGv.m.distance(src.x, src.y, dst.x, dst.y, false);
+//        debugform form1 = new debugform();
+//        form1.text1.setText("从(" + src.x + "," + src.y + ")到(" + dst.x + "," + dst.y + ")的最短路径长度是" + distance);
     }
 
     public void SetLightStatus(Point p,int status)

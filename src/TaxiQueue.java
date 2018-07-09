@@ -2,7 +2,9 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class TaxiQueue implements DEFINE
 {
@@ -31,8 +33,17 @@ public class TaxiQueue implements DEFINE
         System.out.println("\t"+"SETTING TAXIS");
         for (int i = 0; i < 100; i++)
         {
-            Taxi taxi = new Taxi(i);
-            this.taxis.addLast(taxi);
+            if (i < 30)
+            {
+                Taxi taxi = new VIPTaxi(i);
+                this.taxis.addLast(taxi);
+            }
+            else
+            {
+                Taxi taxi = new Taxi(i);
+                this.taxis.addLast(taxi);
+            }
+            Main.GUI.SetTaxiType(i, i<30?1:0);
         }
     }
 
@@ -75,6 +86,16 @@ public class TaxiQueue implements DEFINE
     }
 
     /** @REQUIRES: 0 <= i < 100;
+     * @MODIFIES:  None;
+     * @EFFECTS: (taxi[i] instanceof VIPTaxi) ==> true;
+     */
+    public boolean getTaxiType(int i)
+    {
+
+        return (taxis.get(i) instanceof VIPTaxi);
+    }
+
+    /** @REQUIRES: 0 <= i < 100;
      *              0 <= ID < Main.requestHandler.threads.length;
      * @MODIFIES:  None;
      * @EFFECTS: \result.equals(将指定的请求分配给指定的出租车);
@@ -104,6 +125,22 @@ public class TaxiQueue implements DEFINE
     {
 
         taxis.get(i).initTaxi(status, credit, x, y);
+    }
+
+    /** @REQUIRES: 0 <= i < 100;
+     * @MODIFIES:  None;
+     * @EFFECTS: (taxi[num] instanceof VIPTaxi) ==> \result.equals(VIPTaxi.iterator);
+     *          (!taxi[num] instanceof VIPTaxi) ==> \result.equals(null);
+    @ */
+    public ListIterator<HistoryRecord> getIterator(int num)
+    {
+        if (getTaxiType(num))
+        {
+            return ((VIPTaxi)taxis.get(num)).iterator();
+        } else
+        {
+            return null;
+        }
     }
 
 }

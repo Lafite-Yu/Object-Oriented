@@ -48,16 +48,16 @@ public class Light extends Thread implements DEFINE
                         int count = 0;
                         Point position = new Point(i, j);
 //            case UP:
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y))
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y,  false))
                             count++;
 //            case DOWN:
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y))
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y,  false))
                             count++;
 //            case LEFT:
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1)))
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1), false))
                             count++;
 //            case RIGHT:
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1)))
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1), false))
                             count++;
                         if (count < 3)
                         {

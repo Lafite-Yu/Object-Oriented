@@ -97,6 +97,7 @@ class guitaxi
     public int x = 1;
     public int y = 1;
     public int status = -1;
+    public int type = 0;// 0是普通出租车，1是特殊车
 }
 
 
@@ -324,7 +325,12 @@ class brush
             if (gt.status > -1)
             {
                 // System.out.println("####"+gt.x+" "+gt.y);
-                taximap[gt.x][gt.y] = gt.status;
+                // 加入对type的判断,如果type=1，则taximap=4
+                if (gt.type == 1) {
+                    taximap[gt.x][gt.y] = 4;
+                } else {
+                    taximap[gt.x][gt.y] = gt.status;
+                }
                 if (gt.status == 1)
                 {
                     colormap[gt.x][gt.y] = 1;// 路线染色
@@ -396,7 +402,11 @@ class brush
                     }
                 }
                 int targetWidth;
-                if (taximap[i][j] == 3)
+                // 加入对type的判断
+                if (taximap[i][j] == 4) {
+                    g.setColor(Color.MAGENTA);
+                    targetWidth = 2;
+                } else if (taximap[i][j] == 3)
                 {
                     g.setColor(Color.GREEN);
                     targetWidth = 2;

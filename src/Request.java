@@ -32,7 +32,7 @@ public class Request implements DEFINE
         this.srcPoint = srcPoint;
         this.dstPoint =  dstPoint;
         this.time = time;
-        System.out.printf("New request:from(%d, %d) to:(%d, %d) time:%d\n", (int)srcPoint.getX(), (int)srcPoint.getY(), (int)dstPoint.getX(), (int)dstPoint.getY(), time);
+        System.out.printf("New request: No.%d from(%d, %d) to:(%d, %d) time:%d\n", num, (int)srcPoint.getX(), (int)srcPoint.getY(), (int)dstPoint.getX(), (int)dstPoint.getY(), time);
     }
 
     /** @REQUIRES:  requests.equals(request是已有的一个请求);

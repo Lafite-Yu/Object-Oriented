@@ -1,16 +1,15 @@
 import java.awt.*;
 import java.io.File;
-import java.util.ConcurrentModificationException;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.signum;
 
 public class RequestHandler extends Thread implements DEFINE
 {
-    /** @OVERVIEW: 从控制台读入loadFile/CR/CLOSE/OPEN请求及相应的处理;
+    /** @OVERVIEW: 从控制台读入loadFile/CR/CLOSE/OPEN/CHECK请求及相应的处理;
      * @INHERIT: Thread;
      * @INVARIANT: scan;
      */
@@ -97,6 +96,8 @@ public class RequestHandler extends Thread implements DEFINE
         Pattern CLOSE_Pattern = Pattern.compile(CLOSE_REGEX);
         String OPEN_REGEX = "\\[OPEN,\\(\\d*,\\d*?\\),\\(\\d*,\\d*\\)\\]";
         Pattern OPEN_Pattern = Pattern.compile(OPEN_REGEX);
+        String CHECK_REGEX = "\\[CHECK,\\d*\\]";
+        Pattern CHECK_Pattern = Pattern.compile(CHECK_REGEX);
 
         for(int i = 0; i < MAX_REQUESTS; i++)
         {
@@ -115,6 +116,27 @@ public class RequestHandler extends Thread implements DEFINE
                 Matcher CR_Matcher = CR_Pattern.matcher(str);
                 Matcher CLOSE_Matcher = CLOSE_Pattern.matcher(str);
                 Matcher OPEN_Matcher = OPEN_Pattern.matcher(str);
+                Matcher CHECK_Matcher = CHECK_Pattern.matcher(str);
+
+                if (CHECK_Matcher.matches())
+                {
+                    String[] args = str.split("\\[|\\]|,");
+                    int index = Integer.parseInt(args[2]);
+                    if (Main.taxiQueue.getTaxiType(index) && index >= 0 && index < 30)
+                    {
+                        System.out.printf("%sCHECK FOR VIP TAXI%d%s\n", LINE, index, LINE);
+                        ListIterator<HistoryRecord> iterator = Main.taxiQueue.getIterator(index);
+                        while(iterator.hasNext())
+                        {
+                            iterator.next().printHistory();
+                        }
+                    } else
+                    {
+                        System.out.println("Invalid VIP Taxi index: " + index);
+                    }
+                    i--;
+                    continue;
+                }
                 if (!CR_Matcher.matches() && !CLOSE_Matcher.matches() && !OPEN_Matcher.matches())
                 {
                     System.out.println("Invalid Input.");
@@ -142,11 +164,17 @@ public class RequestHandler extends Thread implements DEFINE
                     {
                         synchronized (GUIGv.m.graph)
                         {
-
+                            if (OPEN_Matcher.matches() && !GUIGv.m.isConnect(srcPoint.x*80+srcPoint.y, dstPoint.x*80+dstPoint.y, true))
+                            {
+                                System.out.println("尝试打开不连通的道路");
+                                i--;
+                                continue;
+                            }
+                            i--;
                             GUIGv.m.graph[srcPoint.x*80+srcPoint.y][dstPoint.x*80+dstPoint.y] = CLOSE_Matcher.matches() ? gv.MAXNUM : 1;
                             GUIGv.m.graph[dstPoint.x*80+dstPoint.y][srcPoint.x*80+srcPoint.y] = CLOSE_Matcher.matches() ? gv.MAXNUM : 1;
                             Main.GUI.SetRoadStatus(srcPoint, dstPoint, CLOSE_Matcher.matches() ? 0 : 1);
-                            System.out.printf("(%d,%d)->(%d,%d) Road status:%s\n", srcPoint.x, srcPoint.y, dstPoint.x, dstPoint.y, GUIGv.m.isConnect(srcPoint.x*80+srcPoint.y, dstPoint.x*80+dstPoint.y) ? "connect" : "disconnect");
+                            System.out.printf("(%d,%d)->(%d,%d) Road status:%s\n", srcPoint.x, srcPoint.y, dstPoint.x, dstPoint.y, GUIGv.m.isConnect(srcPoint.x*80+srcPoint.y, dstPoint.x*80+dstPoint.y, false) ? "connect" : "disconnect");
 //                            System.out.printf("srcPoint.x:%d srcPoint.y:%d, dstPoint.x:%d+dstPoint.x");
 //                            System.out.println(GUIGv.m.isConnect(srcPoint.x*80+srcPoint.y, dstPoint.x*80+dstPoint.y));
 //                            System.out.println(GUIGv.m.isConnect(41*80+36, 41*80+37));
@@ -205,6 +233,16 @@ public class RequestHandler extends Thread implements DEFINE
     {
         return threads.get(i).getSrcPoint();
     }
+
+    /** @REQUIRES: 0 <= i < threads.length;
+     * @MODIFIES:  this;
+     * @EFFECTS: None;
+     */
+    public long getTime(int i)
+    {
+        return threads.get(i).getTime();
+    }
+
 
     /** @REQUIRES: 0 <= i < threads.length
      * @MODIFIES: None

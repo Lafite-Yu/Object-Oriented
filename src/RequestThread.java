@@ -84,7 +84,7 @@ public class RequestThread extends Thread implements DEFINE
                         if (Main.taxiQueue.getTaxiCredit(taxis.get(j)) < Main.taxiQueue.getTaxiCredit(taxis.get(i)))
                             break;
                         if (Main.taxiQueue.getTaxiStatus(taxis.get(j)) == WAITING)
-                            if (GUIGv.m.getDis(Main.taxiQueue.getTaxiPosition(taxis.get(j)), srcPoint) < GUIGv.m.getDis(Main.taxiQueue.getTaxiPosition(taxis.get(i)), srcPoint))
+                            if (GUIGv.m.getDis(Main.taxiQueue.getTaxiPosition(taxis.get(j)), srcPoint, Main.taxiQueue.getTaxiType(taxis.get(j))) < GUIGv.m.getDis(Main.taxiQueue.getTaxiPosition(taxis.get(i)), srcPoint, Main.taxiQueue.getTaxiType(taxis.get(i))))
                                 i = j;
                     }
                     Main.taxiQueue.setTaxiRequest(taxis.get(i), this.ID);
@@ -135,5 +135,14 @@ public class RequestThread extends Thread implements DEFINE
     public Point getDstPoint()
     {
         return dstPoint;
+    }
+
+    /** @REQUIRES:  None;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
+    public long getTime()
+    {
+        return startTime;
     }
 }

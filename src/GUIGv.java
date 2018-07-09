@@ -74,7 +74,10 @@ public class GUIGv
                         count++;
                 }
             }
-            return count;
+            if (m.isConnect(x1*80+y1, x2*80+y2, false))
+                return count;
+            else
+                return 0;
         }
     }
 
@@ -87,7 +90,6 @@ public class GUIGv
             {
                 GUIGv.memflowmap = (HashMap<String, LinkedList<Long>>) GUIGv.flowmap.clone();
                 GUIGv.flowmap = new HashMap<>();
-
             }
         }
     }

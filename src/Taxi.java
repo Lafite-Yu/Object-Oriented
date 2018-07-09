@@ -9,21 +9,22 @@ public class Taxi extends Thread implements DEFINE
      * @INVARIANT: ID;
      */
 
-    private int ID;
-    private long startTime;
-    private int stopTime;
-    private Point position;
-    private int status = WAITING;
-    private int credit = 0;
+    protected int ID;
+    protected long startTime;
+    protected int stopTime;
+    protected Point position;
+    protected int status = WAITING;
+    protected int credit = 0;
 
-    private boolean requestMark = false;
-    private int requestNum = 0;
-    private boolean reachedSrc = false;
-    private Point srcPoint = new Point();
-    private Point dstPoint = new Point();
-    private LinkedList<Integer> movePath = new LinkedList<>();
-    private long fakeTime = 0;
-    private Point lastPosition = new Point();
+
+    protected boolean requestMark = false;
+    protected int requestNum = 0;
+    protected boolean reachedSrc = false;
+    protected Point srcPoint = new Point();
+    protected Point dstPoint = new Point();
+    protected LinkedList<Integer> movePath = new LinkedList<>();
+    protected long fakeTime = 0;
+    protected Point lastPosition = new Point();
 
     public boolean repOK()
     {
@@ -42,6 +43,7 @@ public class Taxi extends Thread implements DEFINE
     {
         this.ID = i;
         this.position = new Point(new Random().nextInt(80), new Random().nextInt(80));
+//        this.VIPTaxi = false;
         Main.GUI.SetTaxiStatus(ID, position, status);
 //        System.out.printf("\tTaxi %d position:(%d, %d)\n", this.ID, (int) position.getX(), (int) position.getY());
     }
@@ -153,12 +155,13 @@ public class Taxi extends Thread implements DEFINE
      * @EFFECTS: \result.equals( position = \old(position).move(movePath.getFirst()) );
      * \result.equals( 出租车运行状态转换 )
      */
-    private void aimMove()
+    protected void aimMove()
     {
         try
         {
             getMovePath();
             fakeTime = System.currentTimeMillis();
+            reachedSrc = false;
             while (true)
             {
                 if (!reachedSrc) // 运行到SRC
@@ -215,6 +218,7 @@ public class Taxi extends Thread implements DEFINE
                         status = WAITING;
                         Main.GUI.SetTaxiStatus(ID, position, status);
                         startTime = System.currentTimeMillis();
+                        reachedSrc = false;
                         break;
                     }
                 }
@@ -226,10 +230,20 @@ public class Taxi extends Thread implements DEFINE
 
     /**
      * @REQUIRES: None;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
+    protected void randomMove()
+    {
+        randomMove(false);
+    }
+
+    /**
+     * @REQUIRES: None;
      * @MODIFIES: this;
      * @EFFECTS: \result.equals(WAITING状态下出租车随机移动，position = \old(position)沿流量最小方向运动一次);
      */
-    private void randomMove()
+    protected void randomMove(boolean VIPTaxi)
     {
         try
         {
@@ -240,25 +254,25 @@ public class Taxi extends Thread implements DEFINE
                 int upFlux = 20000, downFlux = 20000, rightFlux = 20000, leftFlux = 20000;
 
 //            case UP:
-                if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y))
+                if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y, VIPTaxi))
                 {
                     upFlux = GUIGv.GetFlow(position.x, position.y, position.x - 1, position.y);
                     minFlux = minFlux < upFlux ? minFlux : upFlux;
                 }
 //            case DOWN:
-                if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y))
+                if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y, VIPTaxi))
                 {
                     downFlux = GUIGv.GetFlow(position.x, position.y, position.x + 1, position.y);
                     minFlux = minFlux < downFlux ? minFlux : downFlux;
                 }
 //            case LEFT:
-                if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1)))
+                if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1), VIPTaxi))
                 {
                     leftFlux = GUIGv.GetFlow(position.x, position.y, position.x, position.y - 1);
                     minFlux = minFlux < leftFlux ? minFlux : leftFlux;
                 }
 //            case RIGHT:
-                if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1)))
+                if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1), VIPTaxi))
                 {
                     rightFlux = GUIGv.GetFlow(position.x, position.y, position.x, position.y + 1);
                     minFlux = minFlux < rightFlux ? minFlux : rightFlux;
@@ -270,7 +284,7 @@ public class Taxi extends Thread implements DEFINE
                     {
                         if (position.x == 0)
                             break;
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y) && upFlux == minFlux)
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y, VIPTaxi) && upFlux == minFlux)
                         {
                             if (!turnRight(new Point(position.x - 1, position.y)))
                             {
@@ -278,7 +292,7 @@ public class Taxi extends Thread implements DEFINE
                                 {
                                     sleep(5);
                                 }
-                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y))
+                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, (position.x - 1) * 80 + position.y, VIPTaxi))
                                     continue;
                             }
 //                            System.out.printf("Taxi:%d UP Light:%s \n", ID, Main.light.getLight(position)==WE_ON?"WE_ON":Main.light.getLight(position)==SN_ON?"SN_ON":"NULL");
@@ -294,7 +308,7 @@ public class Taxi extends Thread implements DEFINE
                     {
                         if (position.x == 79)
                             continue;
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y) && downFlux == minFlux)
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y, VIPTaxi) && downFlux == minFlux)
                         {
                             if (!turnRight(new Point(position.x + 1, position.y)))
                             {
@@ -302,7 +316,7 @@ public class Taxi extends Thread implements DEFINE
                                 {
                                     sleep(5);
                                 }
-                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y))
+                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, (position.x + 1) * 80 + position.y, VIPTaxi))
                                     continue;
                             }
 //                            System.out.printf("Taxi:%d DOWN Light:%s \n", ID, Main.light.getLight(position)==WE_ON?"WE_ON":Main.light.getLight(position)==SN_ON?"SN_ON":"NULL");
@@ -316,7 +330,7 @@ public class Taxi extends Thread implements DEFINE
                     }
                     case LEFT:
                     {
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1)) && leftFlux == minFlux)
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1), VIPTaxi) && leftFlux == minFlux)
                         {
                             if (!turnRight(new Point(position.x, position.y - 1)))
                             {
@@ -324,7 +338,7 @@ public class Taxi extends Thread implements DEFINE
                                 {
                                     sleep(5);
                                 }
-                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1)))
+                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y - 1), VIPTaxi))
                                     continue;
                             }
 //                            System.out.printf("Taxi:%d LEFT Light:%s \n", ID, Main.light.getLight(position)==WE_ON?"WE_ON":Main.light.getLight(position)==SN_ON?"SN_ON":"NULL");
@@ -338,7 +352,7 @@ public class Taxi extends Thread implements DEFINE
                     }
                     case RIGHT:
                     {
-                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1)) && rightFlux == minFlux)
+                        if (GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1), VIPTaxi) && rightFlux == minFlux)
                         {
                             if (!turnRight(new Point(position.x, position.y + 1)))
                             {
@@ -346,7 +360,7 @@ public class Taxi extends Thread implements DEFINE
                                 {
                                     sleep(5);
                                 }
-                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1)))
+                                if (!GUIGv.m.isConnect(position.x * 80 + position.y, position.x * 80 + (position.y + 1), VIPTaxi))
                                     continue;
                             }
 //                            System.out.printf("Taxi:%d RIGHT\n", ID);
@@ -371,10 +385,11 @@ public class Taxi extends Thread implements DEFINE
      * @MODIFIES: None;
      * @EFFECTS: \result.equals(接单后获取出租车移动路径);
      */
-    public void getMovePath()
+    public void getMovePath(boolean VIPTaxi)
     {
         movePath.clear();
-        for (int nextPoint : GUIGv.m.getPath(position, srcPoint, dstPoint, reachedSrc))
+        System.out.println("reachedSrc?" + reachedSrc);
+        for (int nextPoint : GUIGv.m.getPath(position, srcPoint, dstPoint, reachedSrc, VIPTaxi))
         {
 //            System.out.printf("(%d,%d)\n", nextPoint/80,nextPoint%80);
             movePath.addLast(nextPoint);
@@ -390,18 +405,39 @@ public class Taxi extends Thread implements DEFINE
     }
 
     /**
+     * @REQUIRES: None;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
+    public void getMovePath()
+    {
+        getMovePath(false);
+    }
+
+    /**
+     * @REQUIRES: None;
+     * @MODIFIES: None;
+     * @EFFECTS: \result.equals(调用move(int nextPoint, boolean VIPTaxi)并返回结果);
+     */
+    protected boolean move(int nextPoint)
+    {
+        return move(nextPoint, false);
+    }
+
+    /**
      * @REQUIRES: 0 <= nextPoint <= 79*80+79;
+     *              nextPoint.isValid(nextPoint是出租车下一步移动的目标点，需要满足与上一步的目标点为1、输入的地图文件中两点连通);
      * @MODIFIES: this;
      * @EFFECTS: GUIGv.m.isConnect(curPoint, nextPoint) ==> move, return true;
      * !GUIGv.m.isConnect(curPoint, nextPoint) ==> return false;
      */
-    private boolean move(int nextPoint)
+    protected boolean move(int nextPoint, boolean VIPTaxi)
     {
         try
         {
             Point nextPosition = new Point(nextPoint / 80, nextPoint % 80);
 
-            if (GUIGv.m.isConnect(position.x * 80 + position.y, nextPoint))
+            if (GUIGv.m.isConnect(position.x * 80 + position.y, nextPoint, VIPTaxi))
             {
                 long time = System.currentTimeMillis();
                 if (!turnRight(nextPosition))
@@ -438,7 +474,7 @@ public class Taxi extends Thread implements DEFINE
                             sleep(1);
                         }
                     }
-                    if (!GUIGv.m.isConnect(position.x * 80 + position.y, nextPoint))
+                    if (!GUIGv.m.isConnect(position.x * 80 + position.y, nextPoint, VIPTaxi))
                         return false;
                 }
                 time = System.currentTimeMillis() - time;
@@ -459,7 +495,7 @@ public class Taxi extends Thread implements DEFINE
      * @MODIFIES: None;
      * @EFFECTS: \reqult.equals(判断是否达到20s并判断是否停止1s);
      */
-    private void sleep20()
+    protected void sleep20()
     {
         try
         {
@@ -537,4 +573,5 @@ public class Taxi extends Thread implements DEFINE
     {
         this.credit += c;
     }
+
 }
