@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Elevator.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">(default package) (2018-6-6 14:39:43)</a> &gt; <a href="../../index.html" class="el_group">Jacoco</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Elevator.java</span></div><h1>Elevator.java</h1><pre class="source lang-java linenums">public class Elevator
+{
+    /** @OVERVIEW: 记录电梯请求产生的电梯亮灯情况
+     * @INHERIT: None
+     * @INVARIANT: None
+     */
+    private boolean[] light;
+
+    /** @REQUIRES:  None;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
+    public boolean repOK()
+    {
+//        if (light != null)
+////            return true;
+////        else
+////            return false;
+<span class="fc" id="L19">        return true;</span>
+    }
+
+    /** @REQUIRES:  None;
+     * @MODIFIES: this.light;
+     * @EFFECTS: None;
+     */
+<span class="fc" id="L26">    public Elevator()</span>
+    {
+<span class="fc" id="L28">        light = new boolean[10];</span>
+<span class="fc" id="L29">    }</span>
+
+    /** @REQUIRES:  1 &lt;= floor &lt;= 10;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
+    public boolean getLight(int floor)
+    {
+<span class="fc" id="L37">        return light[floor - 1];</span>
+    }
+
+    /** @REQUIRES:  1 &lt;= floor &lt;= 10;
+     * @MODIFIES: this.light;
+     * @EFFECTS: light[floor-1] == true;
+     */
+    public boolean lightOn(int floor)
+    {
+<span class="fc" id="L46">        light[floor - 1] = true;</span>
+<span class="fc" id="L47">        return true;</span>
+    }
+
+    /** @REQUIRES:  1 &lt;= floor &lt;= 10;
+     * @MODIFIES: this.light;
+     * @EFFECTS: light[floor-1] == false;
+     */
+    public boolean lightOff(int floor)
+    {
+<span class="fc" id="L56">        light[floor - 1] = false;</span>
+<span class="fc" id="L57">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>(default package) (2018-6-6 14:39:43)</div></body></html>

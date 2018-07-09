@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RequestsAndMainTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">(default package) (2018-6-6 14:39:43)</a> &gt; <a href="../../index.html" class="el_group">Jacoco</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">RequestsAndMainTest.java</span></div><h1>RequestsAndMainTest.java</h1><pre class="source lang-java linenums">
+import org.junit.Test; 
+import org.junit.Before; 
+import org.junit.After; 
+import static org.junit.Assert.*;
+
+
+/** 
+* Requests Tester. 
+* 
+* @author &lt;Authors name&gt; 
+* @since &lt;pre&gt;六月 6, 2018&lt;/pre&gt; 
+* @version 1.0 
+*/ 
+<span class="fc" id="L15">public class RequestsAndMainTest</span>
+{
+<span class="fc" id="L17">    Requests requests = new Requests();</span>
+
+    @Before
+    public void before() throws Exception 
+    {
+<span class="fc" id="L22">        requests = new Requests();</span>
+<span class="fc" id="L23">    }</span>
+
+    @After
+    public void after() throws Exception 
+    { 
+<span class="fc" id="L28">    } </span>
+    
+    /**
+    * 
+    * Method: repOK() 
+    * 
+    */ 
+    @Test
+    public void testRepOK() throws Exception 
+    { 
+    //TODO: Test goes here...
+<span class="fc" id="L39">        assertTrue(requests.repOK());</span>
+<span class="fc" id="L40">    } </span>
+
+        /** 
+    * 
+    * Method: judger(String str) 
+    * 
+    */ 
+    @Test
+    public void testJudger() throws Exception 
+    { 
+    //TODO: Test goes here... 
+<span class="fc" id="L51">        assertFalse(requests.judger(&quot;(ER,5,1)&quot;));</span>
+<span class="fc" id="L52">        assertTrue(requests.judger(&quot;(FR,1,UP,0)&quot;));</span>
+<span class="fc" id="L53">        assertFalse(requests.judger(&quot;123&quot;));</span>
+<span class="fc" id="L54">        assertFalse(requests.judger(&quot;(FR,11,UP,0)&quot;));</span>
+<span class="fc" id="L55">        assertFalse(requests.judger(&quot;(FR,10,UP,0)&quot;));</span>
+<span class="fc" id="L56">        assertFalse(requests.judger(&quot;(FR,0,UP,0)&quot;));</span>
+<span class="fc" id="L57">        assertFalse(requests.judger(&quot;(FR,1,DOWN,0)&quot;));</span>
+<span class="fc" id="L58">        assertFalse(requests.judger(&quot;(ER,1,9999999999)&quot;));</span>
+<span class="fc" id="L59">        assertFalse(requests.judger(&quot;(ER,1,-1)&quot;));</span>
+<span class="fc" id="L60">        assertTrue(requests.judger(&quot;(FR,10,DOWN,8)&quot;));</span>
+<span class="fc" id="L61">        assertFalse(requests.judger(&quot;(FR,5,DOWN,5)&quot;));</span>
+
+
+<span class="fc" id="L64">    }</span>
+
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>(default package) (2018-6-6 14:39:43)</div></body></html>

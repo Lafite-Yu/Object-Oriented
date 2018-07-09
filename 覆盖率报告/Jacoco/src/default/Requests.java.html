@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Requests.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">(default package) (2018-6-6 14:39:43)</a> &gt; <a href="../../index.html" class="el_group">Jacoco</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Requests.java</span></div><h1>Requests.java</h1><pre class="source lang-java linenums">import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Requests
+{
+    private boolean start;
+    private long previousTime;
+
+    /** @REQUIRES:  None;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
+    public boolean repOK()
+    {
+<span class="fc" id="L16">        return true;</span>
+    }
+
+<span class="fc" id="L19">    public Requests()</span>
+    {
+<span class="fc" id="L21">        start = false;</span>
+<span class="fc" id="L22">        previousTime = 0;</span>
+
+<span class="fc" id="L24">    }</span>
+
+//    public RequestsQueue readin()
+//    {
+//        RequestsQueue requestQueue = new RequestsQueue();
+//
+//        Scanner scan = new Scanner(System.in);
+//        String str;
+//        int counter = 0;
+//        while (scan.hasNextLine())
+//        {
+//            str = scan.nextLine().replace(&quot; &quot;, &quot;&quot;);
+//            if (str.equals(&quot;RUN&quot;))
+//                break;
+//            else if (this.judger(str))
+//                requestQueue = this.creater(str, requestQueue);
+//
+//            counter += 1;
+//            if (counter &gt;= 100)
+//                break;
+//        }
+//        scan.close();
+//        return requestQueue;
+//    }
+
+    public boolean judger(String str)
+    {
+        // grammarCheck
+<span class="fc" id="L52">        String REGEX = &quot;(\\(FR,\\+?\\d{1,2},(UP|DOWN),\\+?\\d{1,10}\\))|(\\(ER,\\+?\\d{1,2},\\+?\\d{1,10}\\))&quot;;</span>
+<span class="fc" id="L53">        Pattern P = Pattern.compile(REGEX);</span>
+<span class="fc" id="L54">        Matcher M = P.matcher(str);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (!M.matches())</span>
+        {
+<span class="fc" id="L57">            print(str, &quot;不符合语法规则&quot;);</span>
+<span class="fc" id="L58">            return false;</span>
+        }
+        // valueCheck
+<span class="fc" id="L61">        String[] s = str.split(&quot;[(,)]&quot;);</span>
+<span class="fc" id="L62">        long floor = Long.parseLong(s[2]);</span>
+<span class="fc bfc" id="L63" title="All 4 branches covered.">        if (floor &gt; 10 || floor &lt; 1)</span>
+        {
+<span class="fc" id="L65">            print(str, &quot;请求的楼层不合法&quot;);</span>
+<span class="fc" id="L66">            return false;</span>
+        }
+        long time;
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (s[1].equals(&quot;ER&quot;))</span>
+        {
+<span class="fc" id="L71">            time = Long.parseLong(s[3]);</span>
+<span class="fc" id="L72">        } else</span>
+        {
+<span class="fc" id="L74">            time = Long.parseLong(s[4]);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">            if (s[3].equals(&quot;UP&quot;))</span>
+            {
+<span class="fc bfc" id="L77" title="All 2 branches covered.">                if (floor == 10)</span>
+                {
+<span class="fc" id="L79">                    print(str, &quot;尝试在10楼按下向上键&quot;);</span>
+<span class="fc" id="L80">                    return false;</span>
+                }
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">            } else if (s[3].equals(&quot;DOWN&quot;))</span>
+            {
+//                System.out.println(&quot;OJBK&quot;);
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                if (floor == 1)</span>
+                {
+<span class="fc" id="L87">                    print(str, &quot;尝试在1楼按下向下键&quot;);</span>
+<span class="fc" id="L88">                    return false;</span>
+                }
+            }
+        }
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">        if (time &lt; 0 || time &gt; 2 * (long) Integer.MAX_VALUE + 1)</span>
+        {
+<span class="fc" id="L94">            print(str, &quot;时间超出范围&quot;);</span>
+<span class="fc" id="L95">            return false;</span>
+        }
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (!start)</span>
+        {
+<span class="pc bpc" id="L99" title="1 of 4 branches missed.">            if (time != 0 || floor != 1)</span>
+            {
+<span class="fc" id="L101">                print(str, &quot;请求没有从0时刻开始&quot;);</span>
+<span class="fc" id="L102">                return false;</span>
+            } else
+<span class="fc" id="L104">                start = true;</span>
+        }
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (time &lt; previousTime)</span>
+        {
+<span class="fc" id="L108">            print(str, &quot;没有按时间不减的顺序输入&quot;);</span>
+<span class="fc" id="L109">            return false;</span>
+        } else
+<span class="fc" id="L111">            previousTime = time;</span>
+<span class="fc" id="L112">        return true;</span>
+    }
+
+//    public RequestsQueue creater(String str, RequestsQueue requestQueue)
+//    {
+//
+//
+//        long[] info = new long[3];
+//        String[] s = str.split(&quot;[(,)]&quot;);
+//        info[1] = Long.parseLong(s[2]);
+//        if (s[1].equals(&quot;ER&quot;))
+//        {
+//            info[0] = 0;
+//            info[2] = Long.parseLong(s[3]);
+//        } else if (s[1].equals(&quot;FR&quot;))
+//        {
+//            info[2] = Long.parseLong(s[4]);
+//            if (s[3].equals(&quot;UP&quot;))
+//                info[0] = 1;
+//            else if (s[3].equals(&quot;DOWN&quot;))
+//                info[0] = 2;
+//        }
+//        requestQueue.push(info);
+//        return requestQueue;
+//    }
+
+    public void print(String input, String reason)
+    {
+<span class="fc" id="L140">        System.out.printf(&quot;INVALID[%s]\n&quot;, input);</span>
+<span class="fc" id="L141">        System.out.println(&quot;# 非法请求:&quot; + reason);</span>
+<span class="fc" id="L142">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>(default package) (2018-6-6 14:39:43)</div></body></html>
