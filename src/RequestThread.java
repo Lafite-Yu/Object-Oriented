@@ -15,6 +15,10 @@ public class RequestThread extends Thread implements DEFINE
     private LinkedList<Integer> taxis = new LinkedList<>();
     long startTime;
 
+    /** @REQUIRES:  requests.equals(request is a valid request already exists);
+     * @MODIFIES: this;
+     * @EFFECTS: None;
+     */
     public RequestThread(Request request)
     {
         this.srcPoint = request.getSrcPoint();
@@ -22,6 +26,10 @@ public class RequestThread extends Thread implements DEFINE
         this.ID = request.getID();
     }
 
+    /** @REQUIRES:  None;
+     * @MODIFIES: this;
+     * @EFFECTS: None;
+     */
     public void run()
     {
         startTime = System.currentTimeMillis();
@@ -29,14 +37,11 @@ public class RequestThread extends Thread implements DEFINE
         if (ID == 0)
             Main.fileWriter.setStartTime(startTime);
         Main.fileWriter.recordRequest(ID, startTime, srcPoint, dstPoint);
-        //BFS
-        BFSThread BFSthread = new BFSThread(srcPoint, dstPoint);
-        BFSthread.start();
         while(true)
         {
             //扫描出租车状态
             findValidTaxis();
-            if (System.currentTimeMillis() - startTime >= 3000)
+            if (System.currentTimeMillis() - startTime >= 7500)
             {
                 //进行派单
                 sendRequest();
@@ -45,6 +50,10 @@ public class RequestThread extends Thread implements DEFINE
         }
     }
 
+    /** @REQUIRES:  None;
+     * @MODIFIES: None;
+     * @EFFECTS: \result.equals(将请求分配给距离最近的最高信用的出租车，返回分配成功与否的结果);
+     */
     public boolean sendRequest()
     {
         if (taxis.size() != 0)
@@ -65,7 +74,7 @@ public class RequestThread extends Thread implements DEFINE
                         if (Main.taxiQueue.getTaxiCredit(taxis.get(j)) < Main.taxiQueue.getTaxiCredit(taxis.get(i)))
                             break;
                         if (Main.taxiQueue.getTaxiStatus(taxis.get(j)) == WAITING)
-                            if (Main.map.getDistant(Main.taxiQueue.getTaxiPosition(taxis.get(j)), srcPoint) < Main.map.getDistant(Main.taxiQueue.getTaxiPosition(taxis.get(i)), srcPoint))
+                            if (GUIGv.m.getDis(Main.taxiQueue.getTaxiPosition(taxis.get(j)), srcPoint) < GUIGv.m.getDis(Main.taxiQueue.getTaxiPosition(taxis.get(i)), srcPoint))
                                 i = j;
                     }
                     Main.taxiQueue.setTaxiRequest(taxis.get(i), this.ID);
@@ -78,11 +87,17 @@ public class RequestThread extends Thread implements DEFINE
         return false;
     }
 
+    /** @REQUIRES:  None;
+     * @MODIFIES: None;
+     * @EFFECTS: \result.equals(寻找可抢单的出租车，记录车辆编号并增加其信用度);
+     * @THREAD_EFFECTS: \locked();
+     */
     public synchronized void findValidTaxis()
     {
+
         for (int i = 0; i < 100; i++)
         {
-            if (!taxis.contains(i))
+            if (!taxis.contains(i) && Main.taxiQueue.getTaxiStatus(i) == WAITING)
             {
                 Point position = Main.taxiQueue.getTaxiPosition(i);
                 if ( abs(position.x - srcPoint.x) <= 2 && abs(position.y - srcPoint.y) <= 2 )
@@ -94,11 +109,19 @@ public class RequestThread extends Thread implements DEFINE
         }
     }
 
+    /** @REQUIRES:  None;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
     public Point getSrcPoint()
     {
         return srcPoint;
     }
 
+    /** @REQUIRES:  None;
+     * @MODIFIES: None;
+     * @EFFECTS: None;
+     */
     public Point getDstPoint()
     {
         return dstPoint;

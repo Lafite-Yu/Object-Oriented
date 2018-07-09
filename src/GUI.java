@@ -1,3 +1,5 @@
+// this file is separated from gui.java
+
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,6 +17,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.BorderFactory;
@@ -32,8 +35,7 @@ class gv
     public static int MAXNUM = 1000000;
 
     public static long getTime()
-    {
-        // 获得当前系统时间
+    {// 获得当前系统时间
         // Requires:无
         // Modifies:无
         // Effects:返回long类型的以毫秒计的系统时间
@@ -89,6 +91,7 @@ class node
     }
 }
 
+
 class guitaxi
 {
     public int x = 1;
@@ -96,24 +99,6 @@ class guitaxi
     public int status = -1;
 }
 
-class guigv
-{
-    public static MapBFS m = new MapBFS();// 地图备份
-    public static CopyOnWriteArrayList<guitaxi> taxilist = new CopyOnWriteArrayList<guitaxi>();// 出租车列表
-    public static CopyOnWriteArrayList<Point> srclist = new CopyOnWriteArrayList<Point>();// 出发点列表
-    /* GUI_Package */
-    public static JPanel drawboard;
-    public static int[][] colormap;
-    public static boolean redraw = false;
-    public static int xoffset = 0;
-    public static int yoffset = 0;
-    public static int oldxoffset = 0;
-    public static int oldyoffset = 0;
-    public static int mousex = 0;
-    public static int mousey = 0;
-    public static double percent = 1.0;
-    public static boolean drawstr = false;
-}
 
 class DrawBoard extends JPanel
 {// 绘图板类
@@ -138,7 +123,7 @@ class myform extends JFrame
     private static final long serialVersionUID = 1L;
     private int left = 100;
     private int top = 100;
-    private int width = 600;
+    private int width = 630;
     private int height = 600;
 
     public myform()
@@ -153,12 +138,12 @@ class myform extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                guigv.xoffset = 0;
-                guigv.yoffset = 0;
-                guigv.oldxoffset = 0;
-                guigv.oldyoffset = 0;
-                guigv.percent = 1.0;
-                guigv.drawboard.repaint();
+                GUIGv.xoffset = 0;
+                GUIGv.yoffset = 0;
+                GUIGv.oldxoffset = 0;
+                GUIGv.oldyoffset = 0;
+                GUIGv.percent = 1.0;
+                GUIGv.drawboard.repaint();
             }
         });
         // button2
@@ -169,8 +154,8 @@ class myform extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                guigv.percent += 0.1;
-                guigv.drawboard.repaint();
+                GUIGv.percent += 0.1;
+                GUIGv.drawboard.repaint();
             }
         });
         // button3
@@ -181,9 +166,9 @@ class myform extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if (guigv.percent > 0.1)
-                    guigv.percent -= 0.1;
-                guigv.drawboard.repaint();
+                if (GUIGv.percent > 0.1)
+                    GUIGv.percent -= 0.1;
+                GUIGv.drawboard.repaint();
             }
         });
         // button4
@@ -194,26 +179,36 @@ class myform extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                //清除colormap
+                // 清除colormap
                 for (int i = 0; i < 85; i++)
                 {
                     for (int j = 0; j < 85; j++)
                     {
-                        guigv.colormap[i][j] = 0;
+                        GUIGv.colormap[i][j] = 0;
                     }
                 }
-                guigv.drawboard.repaint();
+                GUIGv.drawboard.repaint();
             }
         });
         /* 设置复选框属性 */
         JCheckBox check1 = new JCheckBox("显示位置");
-        check1.setBounds(450, 515, 200, 40);
+        check1.setBounds(450, 515, 80, 40);
         check1.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                guigv.drawstr = check1.isSelected();
-                guigv.drawboard.repaint();
+                GUIGv.drawstr = check1.isSelected();
+                GUIGv.drawboard.repaint();
+            }
+        });
+        JCheckBox check2 = new JCheckBox("显示流量");
+        check2.setBounds(530, 515, 80, 40);
+        check2.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                GUIGv.drawflow = check2.isSelected();
+                GUIGv.drawboard.repaint();
             }
         });
         /* 设置绘图区属性 */
@@ -225,16 +220,16 @@ class myform extends JFrame
         {
             public void mousePressed(MouseEvent e)
             {// 按下鼠标
-                guigv.redraw = true;
-                guigv.mousex = e.getX();
-                guigv.mousey = e.getY();
+                GUIGv.redraw = true;
+                GUIGv.mousex = e.getX();
+                GUIGv.mousey = e.getY();
             }
 
             public void mouseReleased(MouseEvent e)
             {// 松开鼠标
-                guigv.oldxoffset = guigv.xoffset;
-                guigv.oldyoffset = guigv.yoffset;
-                guigv.redraw = false;
+                GUIGv.oldxoffset = GUIGv.xoffset;
+                GUIGv.oldyoffset = GUIGv.yoffset;
+                GUIGv.redraw = false;
             }
 
             @Override
@@ -256,11 +251,11 @@ class myform extends JFrame
         {// 添加鼠标拖动
             public void mouseDragged(MouseEvent e)
             {
-                if (guigv.redraw == true)
+                if (GUIGv.redraw == true)
                 {
-                    guigv.xoffset = guigv.oldxoffset + e.getX() - guigv.mousex;
-                    guigv.yoffset = guigv.oldyoffset + e.getY() - guigv.mousey;
-                    guigv.drawboard.repaint();
+                    GUIGv.xoffset = GUIGv.oldxoffset + e.getX() - GUIGv.mousex;
+                    GUIGv.yoffset = GUIGv.oldyoffset + e.getY() - GUIGv.mousey;
+                    GUIGv.drawboard.repaint();
                 }
             }
         });
@@ -270,17 +265,17 @@ class myform extends JFrame
             {
                 if (e.getWheelRotation() == 1)
                 {// 滑轮向前
-                    if (guigv.percent > 0.1)
-                        guigv.percent -= 0.1;
-                    guigv.drawboard.repaint();
+                    if (GUIGv.percent > 0.1)
+                        GUIGv.percent -= 0.1;
+                    GUIGv.drawboard.repaint();
                 } else if (e.getWheelRotation() == -1)
                 {// 滑轮向后
-                    guigv.percent += 0.1;
-                    guigv.drawboard.repaint();
+                    GUIGv.percent += 0.1;
+                    GUIGv.drawboard.repaint();
                 }
             }
         });
-        guigv.drawboard = drawboard;// 获得一份drawboard的引用
+        GUIGv.drawboard = drawboard;// 获得一份drawboard的引用
 
         /* 设置窗体属性 */
         setTitle("实时查看");// 设置窗体标题
@@ -294,6 +289,7 @@ class myform extends JFrame
         c.add(button3);
         c.add(button4);
         c.add(check1);
+        c.add(check2);
         c.add(drawboard);
         setVisible(true);// 使窗体可见
         setAlwaysOnTop(true);// 设置窗体置顶
@@ -308,23 +304,23 @@ class brush
     public static void draw(Graphics2D g)
     {
         boolean drawcolor = true;
-        int factor = (int) (35 * guigv.percent);
-        int width = (int) (20 * guigv.percent);
+        int factor = (int) (35 * GUIGv.percent);
+        int width = (int) (20 * GUIGv.percent);
         int xoffset = -5;
         int yoffset = 3;
         // 检索一遍出租车位置信息，将有出租车的位置标上1
         int[][] taximap = new int[85][85];
         // 获得colormap的引用
-        guigv.colormap = colormap;
+        GUIGv.colormap = colormap;
         // 设置出租车位置
         for (int i = 0; i < 80; i++)
             for (int j = 0; j < 80; j++)
             {
                 taximap[i][j] = -1;
             }
-        for (int i = 0; i < guigv.taxilist.size(); i++)
+        for (int i = 0; i < GUIGv.taxilist.size(); i++)
         {
-            guitaxi gt = guigv.taxilist.get(i);
+            guitaxi gt = GUIGv.taxilist.get(i);
             if (gt.status > -1)
             {
                 // System.out.println("####"+gt.x+" "+gt.y);
@@ -335,8 +331,8 @@ class brush
                 }
             }
         }
-        // synchronized (guigv.m.taxilist) {
-        // for (taxiInfo i : guigv.m.taxilist) {
+        // synchronized (GUIGv.m.taxilist) {
+        // for (taxiInfo i : GUIGv.m.taxilist) {
         // taximap[i.nowPoint.x][i.nowPoint.y] = 1;
         // if (i.state == STATE.WILL || i.state == STATE.RUNNING) {
         // taximap[i.nowPoint.x][i.nowPoint.y] = 2;
@@ -360,27 +356,44 @@ class brush
                     yoffset = 3;
                 }
                 g.setStroke(new BasicStroke(2));
-                if (guigv.m.map[i][j] == 2 || guigv.m.map[i][j] == 3)
+                g.setFont(new Font("Arial", Font.PLAIN, (int) (10 * GUIGv.percent)));
+                if (GUIGv.m.map[i][j] == 2 || GUIGv.m.map[i][j] == 3)
                 {
                     if (drawcolor && colormap[i][j] == 1 && colormap[i + 1][j] == 1)
                         g.setColor(Color.RED);
                     else
                         g.setColor(Color.BLACK);
-                    g.drawLine((int) ((j * factor + guigv.xoffset) * guigv.percent),
-                            (int) ((i * factor + guigv.yoffset) * guigv.percent),
-                            (int) ((j * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((i + 1) * factor + guigv.yoffset) * guigv.percent));
+                    int memj = (int) ((j * factor + GUIGv.xoffset) * GUIGv.percent);
+                    g.drawLine(memj,
+                            (int) ((i * factor + GUIGv.yoffset) * GUIGv.percent),
+                            memj,
+                            (int) (((i + 1) * factor + GUIGv.yoffset) * GUIGv.percent));
+                    //绘制道路流量
+                    if (GUIGv.drawflow)
+                    {
+                        g.setColor(Color.BLUE);
+                        g.drawString("" + GUIGv.GetFlow(i, j, i + 1, j), memj,
+                                (int) (((i + 0.5) * factor + GUIGv.yoffset) * GUIGv.percent));
+                    }
                 }
-                if (guigv.m.map[i][j] == 1 || guigv.m.map[i][j] == 3)
+                if (GUIGv.m.map[i][j] == 1 || GUIGv.m.map[i][j] == 3)
                 {
                     if (drawcolor && colormap[i][j] == 1 && colormap[i][j + 1] == 1)
                         g.setColor(Color.RED);
                     else
                         g.setColor(Color.BLACK);
-                    g.drawLine((int) ((j * factor + guigv.xoffset) * guigv.percent),
-                            (int) ((i * factor + guigv.yoffset) * guigv.percent),
-                            (int) (((j + 1) * factor + guigv.xoffset) * guigv.percent),
-                            (int) ((i * factor + guigv.yoffset) * guigv.percent));
+                    int memi = (int) ((i * factor + GUIGv.yoffset) * GUIGv.percent);
+                    g.drawLine((int) ((j * factor + GUIGv.xoffset) * GUIGv.percent),
+                            memi,
+                            (int) (((j + 1) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            memi);
+                    //绘制道路流量
+                    if (GUIGv.drawflow)
+                    {
+                        g.setColor(Color.BLUE);
+                        g.drawString("" + GUIGv.GetFlow(i, j, i, j + 1), (int) (((j + 0.5) * factor + GUIGv.xoffset) * GUIGv.percent),
+                                memi);
+                    }
                 }
                 int targetWidth;
                 if (taximap[i][j] == 3)
@@ -404,45 +417,45 @@ class brush
                     g.setColor(Color.BLACK);
                     targetWidth = 1;
                 }
-                int cleft = (int) ((j * factor - width / 2 + guigv.xoffset) * guigv.percent);
-                int ctop = (int) ((i * factor - width / 2 + guigv.yoffset) * guigv.percent);
-                int cwidth = (int) (width * guigv.percent) * targetWidth;
+                int cleft = (int) ((j * factor - width / 2 + GUIGv.xoffset) * GUIGv.percent);
+                int ctop = (int) ((i * factor - width / 2 + GUIGv.yoffset) * GUIGv.percent);
+                int cwidth = (int) (width * GUIGv.percent) * targetWidth;
                 if (targetWidth > 1)
                 {
                     cleft = cleft - (int) (cwidth / 4);
                     ctop = ctop - (int) (cwidth / 4);
                 }
-                // g.fillOval((int)((j*factor-width/2+guigv.xoffset)*guigv.percent),(int)((i*factor-width/2+guigv.yoffset)*guigv.percent),(int)(width*guigv.percent)*targetWidth,(int)(width*guigv.percent)*targetWidth);
+                // g.fillOval((int)((j*factor-width/2+GUIGv.xoffset)*GUIGv.percent),(int)((i*factor-width/2+GUIGv.yoffset)*GUIGv.percent),(int)(width*GUIGv.percent)*targetWidth,(int)(width*GUIGv.percent)*targetWidth);
                 g.fillOval(cleft, ctop, cwidth, cwidth);// 绘制点
                 // 标记srclist中的点
-                for (Point p : guigv.srclist)
+                for (Point p : GUIGv.srclist)
                 {
                     g.setColor(Color.RED);
                     int x = p.x;
                     int y = p.y;
-                    g.drawLine((int) (((y - 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x - 2) * factor + guigv.yoffset) * guigv.percent),
-                            (int) (((y + 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x - 2) * factor + guigv.yoffset) * guigv.percent));
-                    g.drawLine((int) (((y + 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x - 2) * factor + guigv.yoffset) * guigv.percent),
-                            (int) (((y + 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x + 2) * factor + guigv.yoffset) * guigv.percent));
-                    g.drawLine((int) (((y + 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x + 2) * factor + guigv.yoffset) * guigv.percent),
-                            (int) (((y - 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x + 2) * factor + guigv.yoffset) * guigv.percent));
-                    g.drawLine((int) (((y - 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x + 2) * factor + guigv.yoffset) * guigv.percent),
-                            (int) (((y - 2) * factor + guigv.xoffset) * guigv.percent),
-                            (int) (((x - 2) * factor + guigv.yoffset) * guigv.percent));
+                    g.drawLine((int) (((y - 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x - 2) * factor + GUIGv.yoffset) * GUIGv.percent),
+                            (int) (((y + 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x - 2) * factor + GUIGv.yoffset) * GUIGv.percent));
+                    g.drawLine((int) (((y + 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x - 2) * factor + GUIGv.yoffset) * GUIGv.percent),
+                            (int) (((y + 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x + 2) * factor + GUIGv.yoffset) * GUIGv.percent));
+                    g.drawLine((int) (((y + 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x + 2) * factor + GUIGv.yoffset) * GUIGv.percent),
+                            (int) (((y - 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x + 2) * factor + GUIGv.yoffset) * GUIGv.percent));
+                    g.drawLine((int) (((y - 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x + 2) * factor + GUIGv.yoffset) * GUIGv.percent),
+                            (int) (((y - 2) * factor + GUIGv.xoffset) * GUIGv.percent),
+                            (int) (((x - 2) * factor + GUIGv.yoffset) * GUIGv.percent));
                 }
-                if (guigv.drawstr == true)
+                if (GUIGv.drawstr == true)
                 {
                     g.setColor(Color.WHITE);
-                    g.setFont(new Font("Arial", Font.PLAIN, (int) (8 * guigv.percent)));
-                    g.drawString("" + i + "," + j, (int) ((j * factor + xoffset + guigv.xoffset) * guigv.percent),
-                            (int) ((i * factor + yoffset + guigv.yoffset) * guigv.percent));
+                    g.setFont(new Font("Arial", Font.PLAIN, (int) (8 * GUIGv.percent)));
+                    g.drawString("" + i + "," + j, (int) ((j * factor + xoffset + GUIGv.xoffset) * GUIGv.percent),
+                            (int) ((i * factor + yoffset + GUIGv.yoffset) * GUIGv.percent));
                 }
             }
         }

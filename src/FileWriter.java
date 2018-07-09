@@ -12,6 +12,10 @@ public class FileWriter
     private PrintStream sps;
     private long startTime;
 
+    /** @REQUIRES: None;
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals(构造);
+     */
     public FileWriter()
     {
         try
@@ -33,11 +37,22 @@ public class FileWriter
         }
     }
 
+    /** @REQUIRES: \result.equals(time是一个有效的系统时间);
+     * @MODIFIES:  this;
+     * @EFFECTS: \result.equals(设定startTime);
+     */
     public void setStartTime(long time)
     {
         this.startTime = time;
     }
 
+    /** @REQUIRES: 0 <= requestNum < Main.requestHandler.threads.length;
+     *               time.equals(time是一个有效的系统时间);
+     *               0 <= src.x, src.y, dst.x, dst.y <= 79;
+     * @MODIFIES: None;
+     * @EFFECTS: \result.equals(将请求信息写入文件);
+     * @THREAD_EFFECTS: \locked(\this);
+     */
     public void recordRequest(int requestNum, long time, Point src,Point dst)
     {
         synchronized (FileWriter.class)
@@ -49,6 +64,12 @@ public class FileWriter
         }
     }
 
+    /** @REQUIRES: 0 <= requestNum < Main.requestHandler.threads.length;
+     *               0 <= taxiNum < 100;
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals(将所有参与抢单的出租车信息写入文件（写入的位置是派单时刻的出租车位置）);
+     * @THREAD_EFFECTS: \locked(\this);
+     */
     public void recordTaxi(int requestNum, int taxiNum)
     {
         synchronized (FileWriter.class)
@@ -60,6 +81,14 @@ public class FileWriter
         }
     }
 
+    /** @REQUIRES: 0 <= requestNum < Main.requestHandler.threads.length;
+     *               0 <= taxiNum < 100;
+     *               time.equals(time是一个有效的系统时间);
+     *               taxi_status.equals(出租车被派单时）;
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals(将被派单的出租车信息写入文件);
+     * @THREAD_EFFECTS: \locked(\this);
+     */
     public void recordGetRequest(int taxiNum, int requestNum, long time)
     {
         synchronized (FileWriter.class)
@@ -71,6 +100,12 @@ public class FileWriter
         }
     }
 
+    /** @REQUIRES:  0 <= taxiNum < 100;
+     *               time.equals(time是一个有效的系统时间);
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals(将被派单的出租车的运动信息写入文件);
+     * @THREAD_EFFECTS: \locked(\this);
+     */
     public void recordMovement(int taxiNum, long time)
     {
         synchronized (FileWriter.class)
@@ -82,8 +117,17 @@ public class FileWriter
         }
     }
 
+    /** @REQUIRES:  0 <= taxiNum < 100;
+     *               0 <= requestNum < Main.requestHandler.threads.length;
+     *               time.equals(time是一个有效的系统时间);
+     *               taxi_status.equals(被派单的出租车到达请求目的点时);
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals(将被派单的出租车的运动信息写入文件);
+     * @THREAD_EFFECTS: \locked(\this);
+     */
     public void recordReachSrc(int taxiNum, int requestNum, long time)
     {
+
         synchronized (FileWriter.class)
         {
             try
@@ -93,6 +137,14 @@ public class FileWriter
         }
     }
 
+    /** @REQUIRES:  0 <= taxiNum < 100;
+     *                0 <= requestNum < Main.requestHandler.threads.length;
+     *                time.equals(time是一个有效的系统时间);
+     *                taxi_status.equals(被派单的出租车到达请求目的点时);
+     * @MODIFIES: None;
+     * @EFFECTS: \result.equals(将被派单的出租车的运动信息写入文件);
+     * @THREAD_EFFECTS: \locked(\this);
+     */
     public void recordReachDst(int taxiNum, int requestNum, long time)
     {
         synchronized (FileWriter.class)
@@ -104,6 +156,11 @@ public class FileWriter
         }
     }
 
+    /** @REQUIRES:  0 <= taxiNum < 100;
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals(将指定的出租车的信息写入文件);
+     * @THREAD_EFFECTS: \locked();
+     */
     public synchronized void taxiCheck(int taxiNum)
     {
         try
@@ -112,6 +169,12 @@ public class FileWriter
         } catch (Exception e) {}
     }
 
+    /** @REQUIRES:  status == READY || status == WAITING || status == SERVING || status == STOP;
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals(将指定的状态的所有出租车的编号写入文件）;
+     *            (\\all int status; status == READY || status == WAITING || status == SERVING || status == STOP; taxi[i].status == status);
+     * @THREAD_EFFECTS: \locked();
+     */
     public synchronized LinkedList<Integer> statusCheck(int status)
     {
         long time = System.currentTimeMillis() - startTime;

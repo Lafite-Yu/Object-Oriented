@@ -7,7 +7,11 @@ public class Map implements DEFINE
 {
     int[][] map = new int[80][80];
 
-    public void readMap()
+    /** @REQUIRES:  mapFile.equals(mapFile是一个有效的地图文件的路径);
+     * @MODIFIES: this;
+     * @EFFECTS: \result.equals将指定的地图读入map);
+     */
+    public void readMap(String mapFile)
     {
         //读入地图信息
         //Requires:String类型的地图路径,System.in
@@ -17,7 +21,7 @@ public class Map implements DEFINE
         System.out.println("\t"+"LOADING MAP");
 
         Scanner scan = null;
-        File file = new File(MAP_PATH);
+        File file = new File(mapFile);
         if (file.exists() == false)
         {
             System.out.println("地图文件不存在,程序退出");
@@ -26,7 +30,7 @@ public class Map implements DEFINE
         }
         try
         {
-            scan = new Scanner(new File(MAP_PATH));
+            scan = new Scanner(file);
         } catch (FileNotFoundException e)
         {
 
@@ -57,55 +61,5 @@ public class Map implements DEFINE
         scan.close();
     }
 
-
-    public boolean rightConnect(Point point)
-    {
-        if (point.x < 80 && point.x >= 0 && point.y < 80 && point.y >= 0)
-            if (map[point.x][point.y] == R || map[point.x][point.y] == RD)
-                return true;
-        return false;
-    }
-
-    public boolean downConnect(Point point)
-    {
-        if (point.x < 80 && point.x >= 0 && point.y < 80 && point.y >= 0)
-            if (map[point.x][point.y] == D || map[point.x][point.y] == RD)
-                return true;
-        return false;
-    }
-
-    public int getDistant(Point src, Point dst)
-    {
-//        System.out.printf("%d %d %d %d %d\n", src.x, src.y, dst.x, dst.y, guigv.m.distance(src.x, src.y, dst.x, dst.y));
-//        return guigv.m.distance(src.x, src.y, dst.x, dst.y);
-        return guigv.m.getDis(src, dst);
-    }
-
-    public int getShortestMove(Point src, Point dst)
-    {
-//        System.out.printf("(%d,%d) this:%d, UP:%d DOWN:%d LEFT:%d RIGHT:%d\n", src.x, src.y, getDistant(src, dst), getDistant(new Point(src.x-1, src.y), dst), getDistant(new Point(src.x+1, src.y), dst), getDistant(new Point(src.x, src.y-1), dst), getDistant(new Point(src.x, src.y+1), dst));
-        int distance = getDistant(src, dst);
-        if (src.x > 0)
-        {
-            if (getDistant(new Point(src.x-1, src.y), dst) + 1 == distance && Main.map.downConnect(new Point(src.x-1, src.y))) // UP
-                return UP;
-        }
-        if (src.x < 79)
-        {
-            if (getDistant(new Point(src.x+1, src.y), dst) + 1 == distance && Main.map.downConnect(src)) // DOWN
-                return DOWN;
-        }
-        if (src.y > 0)
-        {
-            if (getDistant(new Point(src.x, src.y-1), dst) + 1 == distance && Main.map.rightConnect(new Point(src.x, src.y-1))) // LEFT
-                return LEFT;
-        }
-        if (src.y < 79)
-        {
-            if (getDistant(new Point(src.x, src.y+1), dst) + 1 == distance && Main.map.rightConnect(src)) // RIGHT
-                return RIGHT;
-        }
-        return 10;
-    }
 
 }
