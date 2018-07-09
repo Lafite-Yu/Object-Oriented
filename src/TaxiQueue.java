@@ -6,8 +6,20 @@ import java.util.LinkedList;
 
 public class TaxiQueue implements DEFINE
 {
+    /** @OVERVIEW: 100辆出租车线程的队列;
+     * @INHERIT: None;
+     * @INVARIANT: None;
+     */
+
     private LinkedList<Taxi> taxis = new LinkedList<>();
 
+    public boolean repOK()
+    {
+        if (taxis != null)
+            return true;
+        else
+            return false;
+    }
 
     /** @REQUIRES: None;
      * @MODIFIES:  this;

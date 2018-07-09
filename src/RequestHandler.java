@@ -10,11 +10,24 @@ import static java.lang.Math.abs;
 
 public class RequestHandler extends Thread implements DEFINE
 {
+    /** @OVERVIEW: 从控制台读入loadFile/CR/CLOSE/OPEN请求及相应的处理;
+     * @INHERIT: Thread;
+     * @INVARIANT: scan;
+     */
+
     LinkedList<Request> requests = new LinkedList<>();
     LinkedList<RequestThread> threads = new LinkedList<>();
     Scanner scan = new Scanner(System.in);
     long startTime;
     LinkedList<String> requestString = new LinkedList<>();
+
+    public boolean repOK()
+    {
+        if (requests != null && threads != null && scan != null && startTime > 0 && requestString != null)
+            return true;
+        else
+            return false;
+    }
 
     /** @REQUIRES: None;
      * @MODIFIES: this, System.in;
@@ -66,13 +79,16 @@ public class RequestHandler extends Thread implements DEFINE
                     System.out.println("\t STARTING TAXIS");
                     Main.map.readMap(MAP_PATH);
                     Main.GUI.LoadMap(Main.map.map, 80);
+                    Main.light.readLight(LIGHT_PATH);
                     Main.taxiQueue.setTaxis();
                     break;
                 }
             }
 //            sleep(2000);
-            System.out.println("Taxis runned.");
             Main.taxiQueue.startTaxis();
+            System.out.println("Taxis run.");
+            Main.light.start();
+            System.out.println("Lights run.");
         } catch (Exception e) { e.printStackTrace(); }
         startTime = System.currentTimeMillis();
         String CR_REGEX = "\\[CR,\\(\\d*,\\d*?\\),\\(\\d*,\\d*\\)\\]";
@@ -91,8 +107,11 @@ public class RequestHandler extends Thread implements DEFINE
                 str = str.replace(" ","");
                 if (str.equalsIgnoreCase("END"))
                     System.exit(0);
-                if (str.equalsIgnoreCase(""))
-                    continue;
+//                if (str.equalsIgnoreCase(""))
+//                {
+//                    i--;
+//                    continue;
+//                }
                 Matcher CR_Matcher = CR_Pattern.matcher(str);
                 Matcher CLOSE_Matcher = CLOSE_Pattern.matcher(str);
                 Matcher OPEN_Matcher = OPEN_Pattern.matcher(str);
@@ -222,6 +241,20 @@ public class RequestHandler extends Thread implements DEFINE
                 System.out.println("Map:" + MAP_PATH);
                 Main.GUI.LoadMap(Main.map.map, 80);
             }
+            while(!file.nextLine().equals("#light"));
+            count = 0;
+            while(!(str = file.nextLine()).equals("#end_light"))
+            {
+                System.out.println("Light:" + str);
+                Main.light.readLight(str);
+                count++;
+            }
+            if (count == 0)
+            {
+                str = LIGHT_PATH;
+                System.out.println("Light:" + str);
+                Main.light.readLight(str);
+            }
             Main.taxiQueue.setTaxis();
 //            sleep(2000);
             while(!file.nextLine().equals("#flow"));
@@ -250,7 +283,12 @@ public class RequestHandler extends Thread implements DEFINE
             {
                 requestString.addLast(str);
             }
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("WRONG FORMAT OF LOADFILE");
+            System.exit(0);
+        }
     }
 
 }

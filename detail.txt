@@ -1,1 +1,47 @@
-Request:0:	Time:0 From:(1,1) To(70,70)
+Request:0:	Time:0 From:(50,50) To(64,73)
+Request0:	Taxi2 Position:(52,52) Status:2 Credit:4
+Request0:	Taxi3 Position:(51,48) Status:2 Credit:4
+Request0:	Taxi0 Position:(56,57) Status:2 Credit:3
+Request0:	Taxi1 Position:(52,54) Status:2 Credit:3
+Taxi3:	Get Request0 Position:(51,48) Time:7523
+Taxi3:	Position:(50,49) Time:8428
+Taxi3:	Position:(50,50) Time:8928
+Taxi3:	Reached SRC point. Request0 Position:(50,50) Time:8928
+Taxi3:	Position:(51,50) Time:10428
+Taxi3:	Position:(52,50) Time:10928
+Taxi3:	Position:(52,51) Time:11428
+Taxi3:	Position:(52,52) Time:12240
+Taxi3:	Position:(52,53) Time:12740
+Taxi3:	Position:(53,53) Time:13240
+Taxi3:	Position:(53,54) Time:14122
+Taxi3:	Position:(53,55) Time:14622
+Taxi3:	Position:(54,55) Time:15122
+Taxi3:	Position:(54,56) Time:15622
+Taxi3:	Position:(54,57) Time:16122
+Taxi3:	Position:(54,58) Time:16957
+Taxi3:	Position:(55,58) Time:17457
+Taxi3:	Position:(56,58) Time:17957
+Taxi3:	Position:(57,58) Time:18457
+Taxi3:	Position:(57,59) Time:18957
+Taxi3:	Position:(57,60) Time:19457
+Taxi3:	Position:(57,61) Time:20718
+Taxi3:	Position:(57,62) Time:21218
+Taxi3:	Position:(57,63) Time:22588
+Taxi3:	Position:(58,63) Time:23088
+Taxi3:	Position:(59,63) Time:23588
+Taxi3:	Position:(60,63) Time:24088
+Taxi3:	Position:(60,64) Time:25418
+Taxi3:	Position:(60,65) Time:25918
+Taxi3:	Position:(60,66) Time:26418
+Taxi3:	Position:(61,66) Time:26918
+Taxi3:	Position:(61,67) Time:27418
+Taxi3:	Position:(61,68) Time:27918
+Taxi3:	Position:(61,69) Time:28418
+Taxi3:	Position:(61,70) Time:28918
+Taxi3:	Position:(61,71) Time:29418
+Taxi3:	Position:(62,71) Time:29918
+Taxi3:	Position:(63,71) Time:30418
+Taxi3:	Position:(64,71) Time:31038
+Taxi3:	Position:(64,72) Time:31972
+Taxi3:	Position:(64,73) Time:32908
+Taxi3:	Reached DST point. Request0 Position:(64,73) Time:32908

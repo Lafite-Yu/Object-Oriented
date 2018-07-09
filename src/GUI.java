@@ -427,6 +427,19 @@ class brush
                 }
                 // g.fillOval((int)((j*factor-width/2+GUIGv.xoffset)*GUIGv.percent),(int)((i*factor-width/2+GUIGv.yoffset)*GUIGv.percent),(int)(width*GUIGv.percent)*targetWidth,(int)(width*GUIGv.percent)*targetWidth);
                 g.fillOval(cleft, ctop, cwidth, cwidth);// 绘制点
+                //绘制红绿灯
+                if(GUIGv.lightmap[i][j]==1){//东西方向为绿灯
+                    g.setColor(Color.GREEN);
+                    g.fillRect(cleft-cwidth/4, ctop+cwidth/4, cwidth/2, cwidth/8);
+                    g.setColor(Color.RED);
+                    g.fillRect(cleft+cwidth/8, ctop-cwidth/4, cwidth/8, cwidth/2);
+                }
+                else if(GUIGv.lightmap[i][j]==2){//东西方向为红灯
+                    g.setColor(Color.RED);
+                    g.fillRect(cleft-cwidth/4, ctop+cwidth/4, cwidth/2, cwidth/8);
+                    g.setColor(Color.GREEN);
+                    g.fillRect(cleft+cwidth/8, ctop-cwidth/4, cwidth/8, cwidth/2);
+                }
                 // 标记srclist中的点
                 for (Point p : GUIGv.srclist)
                 {

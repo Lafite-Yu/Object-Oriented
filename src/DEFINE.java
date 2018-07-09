@@ -1,5 +1,6 @@
 public interface DEFINE
 {
+
     int STOP = 0;
     int SERVING = 1;
     int WAITING = 2;
@@ -15,10 +16,15 @@ public interface DEFINE
     int LEFT = 2;
     int RIGHT = 3;
 
+    int OFF = 0;
+    int WE_ON = 1;
+    int SN_ON = 2;
+
     int MAX_REQUESTS = 300;
 
     String LINE = "---------------";
 
     String MAP_PATH = "map.txt";
+    String LIGHT_PATH = "light.txt";
 
 }

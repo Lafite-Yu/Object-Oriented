@@ -1,5 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
 import java.awt.*;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,11 +7,23 @@ import static java.lang.Math.abs;
 
 public class RequestThread extends Thread implements DEFINE
 {
+    /** @OVERVIEW: 对于每一个请求的处理，包括扫描接单的出租车和派单等;
+     * @INHERIT: Thread;
+     * @INVARIANT: ID, srcPoint, dstPoint;
+     */
     private int ID;
     private Point srcPoint;
     private Point dstPoint;
     private LinkedList<Integer> taxis = new LinkedList<>();
     long startTime;
+
+    public boolean repOK()
+    {
+        if (ID >= 0 && srcPoint != null && dstPoint != null && taxis != null && startTime > 0)
+            return true;
+        else
+            return false;
+    }
 
     /** @REQUIRES:  requests.equals(request is a valid request already exists);
      * @MODIFIES: this;

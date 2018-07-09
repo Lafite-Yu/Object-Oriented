@@ -1,0 +1,9 @@
+/bin/
+*.classpath
+*.project
+.idea/.name
+*.xml
+detail.txt
+*.class
+*.iml
+summary.txt

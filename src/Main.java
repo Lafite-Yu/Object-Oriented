@@ -5,12 +5,25 @@ import static java.lang.Thread.sleep;
 
 public class Main implements DEFINE
 {
+    /** @OVERVIEW: Main;
+     * @INHERIT: None;
+     * @INVARIANT: None;
+     */
     static Map map = new Map();
     static TaxiGUI GUI = new TaxiGUI();
 //    static MapBFS mapBFS = new MapBFS();
     static TaxiQueue taxiQueue = new TaxiQueue();
     static RequestHandler requestHandler = new RequestHandler();
     static FileWriter fileWriter = new FileWriter();
+    static Light light = new Light();
+
+    public boolean repOK()
+    {
+        if (map != null && GUI != null && taxiQueue != null && requestHandler != null && fileWriter != null && light != null)
+            return true;
+        else
+            return false;
+    }
 
     /**REQUIRES: None;
      * @MODIFIES: None;

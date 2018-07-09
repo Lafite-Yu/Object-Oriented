@@ -2,10 +2,22 @@ import java.awt.*;
 
 public class Request implements DEFINE
 {
+    /** @OVERVIEW: 读入的每一个请求及相对应的get方法、判断相同等等;
+     * @INHERIT: None
+     * @INVARIANT: ID, srcPoint, dstPoint, time;
+     */
     private int ID;
     private Point srcPoint;
     private Point dstPoint;
     private long time;
+
+    public boolean repOK()
+    {
+        if (ID >= 0 && srcPoint != null && dstPoint != null && time > 0)
+            return true;
+        else
+            return false;
+    }
 
     /** @REQUIRES:  id.equals(id是一个有效的request编号);
      *                   0 <= srcPoint.x, srcPoint.y, dstPoint.x, dstPoint.y <= 79;
@@ -25,7 +37,7 @@ public class Request implements DEFINE
 
     /** @REQUIRES:  requests.equals(request是已有的一个请求);
      * @MODIFIES: None;
-     * @EFFECTS: abs(this.time - request.time) <= 100ms && this.srcPoint.equals(request.srcPoint) && this.dstPoint.equals(request.dstPoint);
+     * @EFFECTS: \result.equals(abs(this.time - request.time) <= 100ms && this.srcPoint.equals(request.srcPoint) && this.dstPoint.equals(request.dstPoint));
      */
     public boolean isSame(Request request)
     {
@@ -39,7 +51,7 @@ public class Request implements DEFINE
 
     /** @REQUIRES:  inTime.equals(inTime is a valid system time);
      * @MODIFIES: None;
-     * @EFFECTS: (inTime - time)/1000 > 1;
+     * @EFFECTS: \result.equals((inTime - time)/1000 > 1);
      */
     public boolean isDelete(long inTime)
     {

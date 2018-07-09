@@ -3,18 +3,22 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import static java.lang.Math.abs;
 
 public class GUIGv
 {
     public static GUIInfo m = new GUIInfo();// 地图备份
     public static CopyOnWriteArrayList<guitaxi> taxilist = new CopyOnWriteArrayList<guitaxi>();// 出租车列表
     public static CopyOnWriteArrayList<Point> srclist = new CopyOnWriteArrayList<Point>();// 出发点列表
-    public static HashMap<String, Integer> flowmap = new HashMap<String, Integer>();//当前流量
-    public static HashMap<String, Integer> memflowmap = new HashMap<String, Integer>();//之前统计的流量
+    public static HashMap<String, LinkedList<Long>> flowmap = new HashMap<>();//当前流量
+    public static HashMap<String, LinkedList<Long>> memflowmap = new HashMap<>();//之前统计的流量
     /* GUI */
     public static JPanel drawboard;
     public static int[][] colormap;
+    public static int[][] lightmap;
     public static boolean redraw = false;
     public static int xoffset = 0;
     public static int yoffset = 0;
@@ -36,11 +40,23 @@ public class GUIGv
         synchronized (GUIGv.flowmap)
         {
             //查询之前的流量数量
-            int count = 0;
-            count = GUIGv.flowmap.get(Key(x1, y1, x2, y2)) == null ? 0 : GUIGv.flowmap.get(Key(x1, y1, x2, y2));
+//            int count = 0;
+//            count = GUIGv.flowmap.get(Key(x1, y1, x2, y2)) == null ? 0 : GUIGv.flowmap.get(Key(x1, y1, x2, y2)).size();
+            long time = System.currentTimeMillis();
             //添加流量
-            GUIGv.flowmap.put(Key(x1, y1, x2, y2), count + 1);
-            GUIGv.flowmap.put(Key(x2, y2, x1, y1), count + 1);
+            if ( GUIGv.flowmap.get(Key(x1, y1, x2, y2)) == null )
+            {
+                LinkedList<Long> flux = new LinkedList<>();
+                flux.addLast(time);
+                GUIGv.flowmap.put(Key(x1, y1, x2, y2), flux);
+                GUIGv.flowmap.put(Key(x2, y2, x1, y1), flux);
+            } else
+            {
+                GUIGv.flowmap.get(Key(x1, y1, x2, y2)).addLast(time);
+                GUIGv.flowmap.get(Key(x2, y2, x1, y1)).addLast(time);
+            }
+//            GUIGv.flowmap.put(Key(x1, y1, x2, y2), count + 1);
+//            GUIGv.flowmap.put(Key(x2, y2, x1, y1), count + 1);
         }
     }
 
@@ -48,7 +64,17 @@ public class GUIGv
     {//查询流量信息
         synchronized (GUIGv.memflowmap)
         {
-            return GUIGv.memflowmap.get(Key(x1, y1, x2, y2)) == null ? 0 : GUIGv.memflowmap.get(Key(x1, y1, x2, y2));
+            long currentTime = System.currentTimeMillis();
+            int count = GUIGv.flowmap.get(Key(x1, y1, x2, y2)) == null ? 0 : GUIGv.flowmap.get(Key(x1, y1, x2, y2)).size();
+            if (GUIGv.memflowmap.get(Key(x1, y1, x2, y2))!=null)
+            {
+                for (Long time: GUIGv.memflowmap.get(Key(x1, y1, x2, y2)))
+                {
+                    if (abs(time-currentTime) <= 500)
+                        count++;
+                }
+            }
+            return count;
         }
     }
 
@@ -59,8 +85,8 @@ public class GUIGv
         {
             synchronized (GUIGv.memflowmap)
             {
-                GUIGv.memflowmap = (HashMap<String, Integer>) GUIGv.flowmap.clone();
-                GUIGv.flowmap = new HashMap<String, Integer>();
+                GUIGv.memflowmap = (HashMap<String, LinkedList<Long>>) GUIGv.flowmap.clone();
+                GUIGv.flowmap = new HashMap<>();
 
             }
         }

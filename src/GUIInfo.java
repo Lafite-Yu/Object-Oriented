@@ -239,7 +239,13 @@ public class GUIInfo
     {
         synchronized (graph)
         {
-            return graph[src][dst] == 1;
+            try
+            {
+                return graph[src][dst] == 1;
+            } catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

@@ -5,7 +5,19 @@ import java.util.Scanner;
 
 public class Map implements DEFINE
 {
+    /** @OVERVIEW: 从文件读入地图;
+     * @INHERIT: None;
+     * @INVARIANT: None;
+     */
     int[][] map = new int[80][80];
+
+    public boolean repOK()
+    {
+        if (map != null)
+            return true;
+        else
+            return false;
+    }
 
     /** @REQUIRES:  mapFile.equals(mapFile是一个有效的地图文件的路径);
      * @MODIFIES: this;
@@ -25,7 +37,7 @@ public class Map implements DEFINE
         if (file.exists() == false)
         {
             System.out.println("地图文件不存在,程序退出");
-            System.exit(1);
+            System.exit(0);
             return;
         }
         try
@@ -44,7 +56,7 @@ public class Map implements DEFINE
             } catch (Exception e)
             {
                 System.out.println("地图文件信息有误，程序退出");
-                System.exit(1);
+                System.exit(0);
             }
             for (int j = 0; j < 80; j++)
             {
@@ -54,7 +66,7 @@ public class Map implements DEFINE
                 } catch (Exception e)
                 {
                     System.out.println("地图文件信息有误，程序退出");
-                    System.exit(1);
+                    System.exit(0);
                 }
             }
         }

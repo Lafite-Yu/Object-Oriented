@@ -8,6 +8,10 @@ import static java.lang.Thread.sleep;
 
 public class FileWriter
 {
+    /** @OVERVIEW: 将出租车在接送单过程中的信息写入到文件;
+     * @INHERIT: None;
+     * @INVARIANT: ps, sps;
+     */
     private PrintStream ps;
     private PrintStream sps;
     private long startTime;
@@ -37,9 +41,17 @@ public class FileWriter
         }
     }
 
+    public boolean repOK()
+    {
+        if (ps != null && sps != null)
+            return true;
+        else
+            return false;
+    }
+
     /** @REQUIRES: \result.equals(time是一个有效的系统时间);
-     * @MODIFIES:  this;
-     * @EFFECTS: \result.equals(设定startTime);
+     * @MODIFIES:  this.startTime;
+     * @EFFECTS: \result == (this.startTime = time);
      */
     public void setStartTime(long time)
     {
